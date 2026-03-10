@@ -1,0 +1,317 @@
+/* ═══════════════════════════════════════════════════════
+   LA TAVOLA DI ROMA — responsive.css
+   Breakpoints: 1200px · 1024px · 768px · 480px
+═══════════════════════════════════════════════════════ */
+
+/* ── LARGE (≤ 1200px) ────────────────────────────────── */
+@media (max-width: 1200px) {
+  .specialties-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .footer-top {
+    grid-template-columns: 1.5fr 1fr 1fr;
+  }
+
+  .footer-newsletter {
+    grid-column: 1 / -1;
+    max-width: 400px;
+  }
+
+  .testi-track {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .about-container {
+    gap: 4rem;
+  }
+}
+
+/* ── TABLET (≤ 1024px) ───────────────────────────────── */
+@media (max-width: 1024px) {
+  .navbar {
+    padding: 1rem 5%;
+  }
+
+  .nav-links {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    height: 100vh;
+    width: min(320px, 80vw);
+    background: var(--deep);
+    flex-direction: column;
+    justify-content: center;
+    gap: 2.5rem;
+    padding: 2rem;
+    transition: right 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+    box-shadow: -10px 0 40px rgba(0,0,0,0.4);
+  }
+
+  .nav-links.open {
+    right: 0;
+  }
+
+  .nav-link {
+    font-size: 1rem;
+    color: rgba(255,255,255,0.85) !important;
+  }
+
+  .nav-link.active { color: var(--gold-light) !important; }
+
+  .nav-cta {
+    width: fit-content;
+    text-align: center;
+    padding: 0.75rem 2rem !important;
+  }
+
+  .burger {
+    display: flex;
+    z-index: 1100;
+  }
+
+  .navbar.scrolled .burger span {
+    background: var(--text);
+  }
+
+  .navbar.open .burger span,
+  .burger.active span {
+    background: var(--white) !important;
+  }
+
+  /* Hero */
+  .hero-badge {
+    display: none;
+  }
+
+  .hero-content {
+    max-width: 100%;
+  }
+
+  /* About */
+  .about-container {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  .about-visual {
+    max-width: 420px;
+    margin: 0 auto;
+  }
+
+  /* Ambiance */
+  .ambiance {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  .ambiance-mosaic {
+    max-width: 500px;
+  }
+
+  /* Hours */
+  .hours-container {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  .map-placeholder {
+    aspect-ratio: 16/9;
+  }
+}
+
+/* ── MOBILE (≤ 768px) ─────────────────────────────────── */
+@media (max-width: 768px) {
+  /* Global */
+  .section-title {
+    font-size: clamp(1.8rem, 6vw, 2.8rem);
+  }
+
+  /* Stats */
+  .stats-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    padding: 1rem;
+  }
+
+  .stat-divider {
+    display: none;
+  }
+
+  .stat-item {
+    padding: 1rem;
+  }
+
+  .stat-num {
+    font-size: 2.2rem;
+  }
+
+  /* About */
+  .about {
+    padding: 5rem 5%;
+  }
+
+  .about-accent-text {
+    font-size: 5rem;
+    top: -1rem;
+    left: -1rem;
+  }
+
+  /* Specialties */
+  .specialties {
+    padding: 5rem 5%;
+  }
+
+  .specialties-grid {
+    grid-template-columns: 1fr;
+    max-width: 420px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Testimonials */
+  .testimonials {
+    padding: 5rem 5%;
+  }
+
+  .testi-track {
+    grid-template-columns: 1fr;
+    max-width: 420px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Hours */
+  .hours {
+    padding: 5rem 5%;
+  }
+
+  /* Footer */
+  .footer-top {
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+
+  .footer-brand {
+    grid-column: 1 / -1;
+  }
+
+  .footer-newsletter {
+    grid-column: 1 / -1;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    gap: 0.5rem;
+    text-align: center;
+  }
+
+  /* Hero */
+  .hero {
+    padding: 0 5%;
+    align-items: flex-end;
+    padding-bottom: 5rem;
+  }
+
+  .hero-content {
+    padding-top: 8rem;
+  }
+
+  .hero-btns {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .hero-btns .btn {
+    width: fit-content;
+  }
+
+  /* Ambiance */
+  .ambiance {
+    padding: 5rem 5%;
+  }
+
+  .ambiance-mosaic {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  /* Hero circles */
+  .c1 { width: 300px; height: 300px; right: -80px; top: -80px; }
+  .c2 { width: 200px; height: 200px; right: 20px; top: 20px; }
+  .c3 { display: none; }
+}
+
+/* ── SMALL MOBILE (≤ 480px) ──────────────────────────── */
+@media (max-width: 480px) {
+  /* Global padding */
+  .about, .specialties, .testimonials, .hours, .ambiance {
+    padding: 4rem 4%;
+  }
+
+  /* Stats */
+  .stats-bar {
+    padding: 2rem 4%;
+  }
+
+  .stats-container {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  /* Footer */
+  .footer {
+    padding: 4rem 4% 2rem;
+  }
+
+  .footer-top {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-newsletter {
+    grid-column: 1;
+  }
+
+  /* Scroll indicator */
+  .scroll-indicator {
+    display: none;
+  }
+
+  /* Mosaic */
+  .ambiance-mosaic {
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .mosaic-item {
+    padding: 1.25rem 1rem;
+  }
+
+  /* Hero desc */
+  .hero-desc br {
+    display: none;
+  }
+
+  /* Section header */
+  .section-header {
+    margin-bottom: 2.5rem;
+  }
+
+  /* Newsletter */
+  .newsletter-form {
+    flex-direction: row;
+  }
+}
+
+/* ── REDUCED MOTION ──────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .reveal-up, .reveal-left, .reveal-right, .reveal-scale {
+    opacity: 1;
+    transform: none;
+  }
+}

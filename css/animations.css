@@ -1,0 +1,333 @@
+/* ═══════════════════════════════════════════════════════
+   LA TAVOLA DI ROMA — animations.css
+═══════════════════════════════════════════════════════ */
+
+/* ── KEYFRAMES ──────────────────────────────────────── */
+@keyframes rotateSlow {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@keyframes scrollPulse {
+  0%,100% { opacity: 0.3; transform: scaleY(1); }
+  50%      { opacity: 1;   transform: scaleY(1.2); }
+}
+
+@keyframes bounce {
+  0%,100% { transform: translateY(0); }
+  50%      { transform: translateY(-12px); }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInLeft {
+  from { opacity: 0; transform: translateX(-40px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fadeInRight {
+  from { opacity: 0; transform: translateX(40px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position:  200% center; }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(196,98,45,0.4); }
+  50%       { transform: scale(1.03); box-shadow: 0 0 0 12px rgba(196,98,45,0); }
+}
+
+@keyframes float {
+  0%,100% { transform: translateY(0px) rotate(0deg); }
+  33%      { transform: translateY(-8px) rotate(1deg); }
+  66%      { transform: translateY(-4px) rotate(-1deg); }
+}
+
+/* ── REVEAL ANIMATIONS ──────────────────────────────── */
+.reveal-up {
+  opacity: 0;
+  transform: translateY(40px);
+  animation: fadeInUp 0.85s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-40px);
+  animation: fadeInLeft 0.85s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.reveal-right {
+  opacity: 0;
+  transform: translateX(40px);
+  animation: fadeInRight 0.85s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.reveal-scale {
+  opacity: 0;
+  transform: scale(0.9);
+  animation: scaleIn 0.85s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* Delays */
+.delay-1 { animation-delay: 0.15s; }
+.delay-2 { animation-delay: 0.3s; }
+.delay-3 { animation-delay: 0.45s; }
+.delay-4 { animation-delay: 0.6s; }
+.delay-5 { animation-delay: 0.75s; }
+
+/* ── SCROLL REVEAL (JS ajoutera la classe .visible) ── */
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.scroll-reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── HOVER EFFECTS ──────────────────────────────────── */
+.hover-lift {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.hover-lift:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px rgba(26,15,10,0.15);
+}
+
+/* Gold shimmer on text */
+.gold-shimmer {
+  background: linear-gradient(
+    90deg,
+    var(--gold) 0%,
+    var(--gold-light) 40%,
+    var(--gold) 60%,
+    var(--gold-light) 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 3s linear infinite;
+}
+
+/* ── NAVBAR ANIMATION ───────────────────────────────── */
+.navbar {
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+/* ── BURGER ACTIVE ──────────────────────────────────── */
+.burger.active span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.burger.active span:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+.burger.active span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* ── SPEC CARD HOVER ─────────────────────────────────── */
+.spec-card {
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ── FLOATING DECORATIONS ───────────────────────────── */
+.about-accent-text {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* ── COUNTER ANIMATION ──────────────────────────────── */
+.stat-num {
+  transition: all 0.1s ease;
+}
+
+/* ── DOTS SLIDER ─────────────────────────────────────── */
+.dot {
+  transition: width 0.3s ease, background 0.3s ease;
+}
+
+/* ── FOOTER LINKS ───────────────────────────────────── */
+.footer-nav a {
+  transition: color 0.25s ease, padding-left 0.25s ease;
+}
+
+/* ── NEWSLETTER BTN ─────────────────────────────────── */
+.newsletter-form button:hover {
+  animation: pulse 0.5s ease;
+}
+
+/* ── HERO CIRCLES ─────────────────────────────────────── */
+.c1, .c2 {
+  transform-origin: center;
+}
+
+/* ── PAGE TRANSITION ─────────────────────────────────── */
+body {
+  animation: fadeInUp 0.5s ease forwards;
+}
+
+/* ══════════════════════════════════════════════════════
+   ANIMATIONS AVANCÉES — Étape H
+══════════════════════════════════════════════════════ */
+
+/* ── Barre de progression scroll ── */
+@keyframes shimmerBar {
+  0%   { background-position: 0% 0%; }
+  100% { background-position: 200% 0%; }
+}
+
+/* ── Section eyebrow avec ligne animée ── */
+.section-eyebrow {
+  position: relative;
+  display: inline-block;
+}
+
+.section-eyebrow::before {
+  content: '';
+  position: absolute;
+  left: -2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 1px;
+  width: 0;
+  background: currentColor;
+  opacity: 0.4;
+  transition: width 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.2s;
+}
+
+.section-eyebrow::after {
+  content: '';
+  position: absolute;
+  right: -2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 1px;
+  width: 0;
+  background: currentColor;
+  opacity: 0.4;
+  transition: width 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.2s;
+}
+
+.eyebrow-visible::before,
+.eyebrow-visible::after {
+  width: 1.5rem;
+}
+
+/* ── Split text chars ── */
+.split-char {
+  will-change: transform, opacity;
+}
+
+/* ── Hover lift amélioré ── */
+.spec-card,
+.testi-card,
+.menu-card,
+.gal-item,
+.err-link-card {
+  will-change: transform;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/* ── Transition douce pour les images bg ── */
+.spec-img-photo,
+.mosaic-item,
+.gal-img {
+  will-change: opacity, transform;
+}
+
+/* ── Cursor glow transition ── */
+#cursorGlow {
+  transition: width 0.4s ease, height 0.4s ease, background 0.4s ease, opacity 0.3s ease !important;
+  will-change: left, top;
+}
+
+/* ── Progress bar ── */
+#scrollProgressBar {
+  will-change: width;
+}
+
+/* ── Animation entrée hero (améliorée) ── */
+@keyframes heroTitleReveal {
+  0%   { opacity: 0; transform: translateY(60px) skewY(3deg); filter: blur(4px); }
+  100% { opacity: 1; transform: translateY(0) skewY(0deg);   filter: blur(0px); }
+}
+
+.hero-title { animation: heroTitleReveal 1s cubic-bezier(0.22, 1, 0.36, 1) 0.3s both; }
+.hero-sub   { animation: fadeInUp 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.7s both; }
+.hero-badge { animation: scaleIn  0.7s cubic-bezier(0.34, 1.56, 0.64, 1) 0.9s both; }
+.hero-cta   { animation: fadeInUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) 1.0s both; }
+
+/* ── Keyframe pour le parallaxe fluide ── */
+@keyframes parallaxFloat {
+  0%, 100% { transform: translateY(0px);  }
+  50%       { transform: translateY(-8px); }
+}
+
+/* ── Hover glow sur spec-img-photo ── */
+.spec-card:hover .spec-img-photo::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(196,98,45,0.12) 0%,
+    transparent 60%
+  );
+  pointer-events: none;
+}
+
+/* ── Shimmer sur les cartes stat ── */
+.stat-item::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(
+    105deg,
+    transparent 40%,
+    rgba(255,255,255,0.05) 50%,
+    transparent 60%
+  );
+  transition: left 0.6s ease;
+}
+
+.stat-item:hover::before { left: 150%; }
+
+/* ── Reduce motion ── */
+@media (prefers-reduced-motion: reduce) {
+  .split-char,
+  .hero-title, .hero-sub, .hero-badge, .hero-cta {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+    transition: none !important;
+  }
+
+  .spec-card, .testi-card, .menu-card, .gal-item {
+    transform: none !important;
+    transition: none !important;
+  }
+
+  #cursorGlow, #scrollProgressBar {
+    display: none !important;
+  }
+}

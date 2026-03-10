@@ -1,0 +1,362 @@
+/* ═══════════════════════════════════════════════════════
+   LA TAVOLA DI ROMA — 404.css
+═══════════════════════════════════════════════════════ */
+
+/* ── PAGE LAYOUT ────────────────────────────────────── */
+.page-404 {
+  background: var(--deep);
+  min-height: 100vh;
+}
+
+.page-404 .footer {
+  background: rgba(255,255,255,0.04);
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+
+.page-404 .footer-bottom {
+  max-width: 100%;
+  color: rgba(255,255,255,0.3);
+}
+
+.page-404 .footer-bottom a {
+  color: rgba(255,255,255,0.4);
+  transition: color 0.2s;
+}
+
+.page-404 .footer-bottom a:hover { color: var(--gold-light); }
+
+/* ── FOND DÉCORATIF ─────────────────────────────────── */
+.err-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.err-grain {
+  position: absolute;
+  inset: 0;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-size: 200px;
+}
+
+.err-glow {
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 700px;
+  height: 700px;
+  border-radius: 50%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(196,98,45,0.12) 0%,
+    rgba(201,168,76,0.06) 40%,
+    transparent 70%
+  );
+  animation: pulse 4s ease-in-out infinite;
+}
+
+/* ── NUMÉRO DÉCORATIF GÉANT ─────────────────────────── */
+.err-deco-num {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: var(--font-display);
+  font-size: clamp(180px, 30vw, 340px);
+  font-weight: 300;
+  color: rgba(255,255,255,0.018);
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+  letter-spacing: -0.05em;
+}
+
+/* ── MAIN CONTENT ───────────────────────────────────── */
+.err-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8rem 4% 4rem;
+  position: relative;
+}
+
+.err-content {
+  position: relative;
+  z-index: 2;
+  max-width: 680px;
+  width: 100%;
+  text-align: center;
+}
+
+/* ── ASSIETTE ANIMÉE ────────────────────────────────── */
+.err-icon {
+  margin-bottom: 2.5rem;
+}
+
+.err-plate {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 120px;
+  height: 120px;
+}
+
+.plate-emoji {
+  font-size: 3.5rem;
+  animation: float 3s ease-in-out infinite;
+  position: relative;
+  z-index: 2;
+  filter: drop-shadow(0 8px 16px rgba(0,0,0,0.4));
+}
+
+.plate-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(201,168,76,0.2);
+}
+
+.plate-ring.r1 {
+  width: 90px;
+  height: 90px;
+  animation: rotateSlow 12s linear infinite;
+}
+
+.plate-ring.r2 {
+  width: 120px;
+  height: 120px;
+  border-color: rgba(196,98,45,0.12);
+  animation: rotateSlow 20s linear infinite reverse;
+}
+
+/* ── TEXTE ──────────────────────────────────────────── */
+.err-text {
+  margin-bottom: 3rem;
+}
+
+.err-text .section-eyebrow { color: var(--terracotta); }
+
+.err-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  font-weight: 300;
+  color: var(--white);
+  line-height: 1.2;
+  margin: 0.75rem 0 1.25rem;
+}
+
+.err-title em {
+  font-style: italic;
+  color: var(--gold);
+}
+
+.err-desc {
+  font-size: 0.95rem;
+  color: rgba(255,255,255,0.5);
+  line-height: 1.75;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+/* ── LIENS RAPIDES ──────────────────────────────────── */
+.err-links {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.85rem;
+  margin-bottom: 2.5rem;
+  text-align: left;
+}
+
+.err-link-card {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: var(--radius);
+  padding: 1rem 1.1rem;
+  transition: all 0.28s ease;
+  cursor: pointer;
+  color: var(--white);
+}
+
+.err-link-card:hover {
+  background: rgba(196,98,45,0.12);
+  border-color: rgba(196,98,45,0.35);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(196,98,45,0.15);
+}
+
+.err-link-card.featured-card-404 {
+  background: rgba(196,98,45,0.12);
+  border-color: rgba(196,98,45,0.3);
+}
+
+.err-link-card.featured-card-404:hover {
+  background: var(--terracotta);
+  border-color: var(--terracotta);
+  box-shadow: 0 8px 25px rgba(196,98,45,0.4);
+}
+
+.elc-icon {
+  font-size: 1.6rem;
+  flex-shrink: 0;
+  transition: transform 0.25s ease;
+}
+
+.err-link-card:hover .elc-icon { transform: scale(1.2) rotate(5deg); }
+
+.elc-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.elc-text strong {
+  display: block;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--white);
+  margin-bottom: 0.15rem;
+}
+
+.elc-text span {
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.45);
+}
+
+.elc-arrow {
+  font-size: 1rem;
+  color: rgba(255,255,255,0.3);
+  flex-shrink: 0;
+  transition: all 0.25s ease;
+}
+
+.err-link-card:hover .elc-arrow {
+  color: var(--white);
+  transform: translateX(4px);
+}
+
+/* ── RECHERCHE RAPIDE ───────────────────────────────── */
+.err-search {
+  margin-bottom: 2rem;
+}
+
+.err-search-label {
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.35);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+}
+
+.err-search-bar {
+  display: flex;
+  gap: 0;
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 50px;
+  overflow: hidden;
+  transition: border-color 0.25s;
+  max-width: 440px;
+  margin: 0 auto;
+}
+
+.err-search-bar:focus-within {
+  border-color: var(--terracotta);
+  box-shadow: 0 0 0 4px rgba(196,98,45,0.1);
+}
+
+.err-search-bar input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  padding: 0.8rem 1.4rem;
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  color: var(--white);
+}
+
+.err-search-bar input::placeholder { color: rgba(255,255,255,0.25); }
+
+.err-search-bar button {
+  background: var(--terracotta);
+  border: none;
+  padding: 0.8rem 1.4rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s;
+  flex-shrink: 0;
+}
+
+.err-search-bar button:hover { background: var(--terra-dark); }
+
+/* Résultats de recherche */
+.err-search-results {
+  margin-top: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  max-width: 440px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.search-result-item {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: var(--radius);
+  padding: 0.6rem 1rem;
+  font-size: 0.82rem;
+  color: rgba(255,255,255,0.7);
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+.search-result-item:hover {
+  background: rgba(196,98,45,0.1);
+  border-color: rgba(196,98,45,0.25);
+  color: var(--white);
+  transform: translateX(4px);
+}
+
+.search-result-item .sri-icon { font-size: 1rem; flex-shrink: 0; }
+.search-result-item .sri-label { flex: 1; font-weight: 400; }
+.search-result-item .sri-url { color: rgba(255,255,255,0.25); font-size: 0.72rem; }
+
+/* ── TIMER AUTO-REDIRECT ────────────────────────────── */
+.err-timer {
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.25);
+  line-height: 1.6;
+}
+
+.err-timer strong { color: rgba(255,255,255,0.5); }
+
+.err-timer a {
+  color: var(--terracotta);
+  text-decoration: underline;
+  transition: color 0.2s;
+}
+
+.err-timer a:hover { color: var(--terra-light); }
+
+/* ── RESPONSIVE ─────────────────────────────────────── */
+@media (max-width: 600px) {
+  .err-links { grid-template-columns: 1fr; }
+  .err-deco-num { font-size: 40vw; }
+  .err-title { font-size: 1.6rem; }
+  .plate-emoji { font-size: 2.8rem; }
+  .err-plate { width: 90px; height: 90px; }
+  .plate-ring.r1 { width: 70px; height: 70px; }
+  .plate-ring.r2 { width: 90px; height: 90px; }
+}

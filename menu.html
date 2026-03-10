@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- ═══ SEO PRIMAIRE ═══ -->
+  <title>Menu — La Tavola di Roma | Restaurant Italien Paris</title>
+  <meta name="description" content="Découvrez la carte complète de La Tavola di Roma : antipasti, pizza napolitaine, pasta fraîche maison, secondi piatti, dolci et carte des vins italiens. Paris 1er." />
+  <meta name="keywords" content="menu restaurant italien paris, pizza napolitaine paris, tagliatelle ragù, tiramisu authentique, carte vins italiens" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://www.latavola-diroma.fr/menu.html" />
+
+  <!-- ═══ OPEN GRAPH ═══ -->
+  <meta property="og:type"        content="website" />
+  <meta property="og:title"       content="Menu — La Tavola di Roma | Restaurant Italien Paris" />
+  <meta property="og:description" content="Antipasti, pizza, pasta fraîche, secondi et dolci. La carte complète du restaurant italien authentique à Paris." />
+  <meta property="og:image"       content="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1200&q=80" />
+  <meta property="og:url"         content="https://www.latavola-diroma.fr/menu.html" />
+  <meta property="og:site_name"   content="La Tavola di Roma" />
+  <meta property="og:locale"      content="fr_FR" />
+
+  <!-- ═══ TWITTER CARD ═══ -->
+  <meta name="twitter:card"        content="summary_large_image" />
+  <meta name="twitter:title"       content="Notre Carte — La Tavola di Roma" />
+  <meta name="twitter:description" content="Découvrez nos spécialités italiennes : pasta fraîche, pizza napolitaine, dolci et vins." />
+  <meta name="twitter:image"       content="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1200&q=80" />
+
+  <!-- ═══ FAVICONS ═══ -->
+  <link rel="icon"             href="assets/favicon.ico"          type="image/x-icon" />
+  <link rel="icon"             href="assets/favicon.svg"          type="image/svg+xml" />
+  <link rel="icon"             href="assets/favicon-32.png"       type="image/png" sizes="32x32" />
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" sizes="180x180" />
+  <link rel="manifest"         href="site.webmanifest" />
+  <meta name="theme-color"     content="#C4622D" />
+
+  <!-- ═══ SCHEMA.ORG MENU ═══ -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Menu",
+    "name": "Carte de La Tavola di Roma",
+    "url": "https://www.latavola-diroma.fr/menu.html",
+    "inLanguage": "fr",
+    "provider": {
+      "@type": "Restaurant",
+      "name": "La Tavola di Roma",
+      "url": "https://www.latavola-diroma.fr"
+    }
+  }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&family=Pinyon+Script&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+  <link rel="stylesheet" href="css/menu.css" />
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════ NAVBAR ══ -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-logo">
+      <span class="logo-script">La Tavola</span>
+      <span class="logo-sub">di Roma</span>
+    </div>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html" class="nav-link">Accueil</a></li>
+      <li><a href="menu.html" class="nav-link active">Menu</a></li>
+      <li><a href="index.html#about" class="nav-link">À propos</a></li>
+      <li><a href="index.html#specialties" class="nav-link">Spécialités</a></li>
+      <li><a href="reservation.html" class="nav-link nav-cta">Réserver</a></li>
+    </ul>
+    <button class="burger" id="burger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- ════════════════════════════════ MENU HERO ══ -->
+  <section class="menu-hero">
+    <div class="menu-hero-bg" style="background-image:url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1800&q=80'); background-size:cover; background-position:center;">
+      <div class="hero-grain"></div>
+      <div class="menu-hero-overlay"></div>
+    </div>
+    <div class="menu-hero-content reveal-up">
+      <p class="section-eyebrow">Cuisine Italienne Authentique</p>
+      <h1 class="menu-hero-title">
+        Notre <em>Carte</em>
+      </h1>
+      <p class="menu-hero-sub">
+        Des saveurs généreuses, des recettes ancestrales, des produits d'exception.
+      </p>
+    </div>
+    <div class="menu-hero-scroll">
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════ MENU INTRO ══ -->
+  <div class="menu-intro">
+    <div class="menu-intro-inner">
+      <span class="menu-intro-icon">🫒</span>
+      <p>Tous nos plats sont préparés avec des produits frais importés d'Italie. Nos pâtes sont faites <strong>à la main chaque matin</strong>. Allergènes disponibles sur demande.</p>
+      <span class="menu-intro-icon">🌿</span>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════ MENU PRINCIPAL ══ -->
+  <main class="menu-main">
+
+    <!-- ── FILTRES ──────────────────────────────── -->
+    <div class="menu-filters" id="menuFilters">
+      <button class="filter-btn active" data-filter="all">
+        <span class="filter-icon">🍽️</span> Tout le Menu
+      </button>
+      <button class="filter-btn" data-filter="antipasti">
+        <span class="filter-icon">🫒</span> Antipasti
+      </button>
+      <button class="filter-btn" data-filter="pizza">
+        <span class="filter-icon">🍕</span> Pizza
+      </button>
+      <button class="filter-btn" data-filter="pasta">
+        <span class="filter-icon">🍝</span> Pasta
+      </button>
+      <button class="filter-btn" data-filter="secondi">
+        <span class="filter-icon">🥩</span> Secondi
+      </button>
+      <button class="filter-btn" data-filter="dolci">
+        <span class="filter-icon">🍮</span> Dolci
+      </button>
+      <button class="filter-btn" data-filter="vini">
+        <span class="filter-icon">🍷</span> Vini
+      </button>
+    </div>
+
+    <!-- ── SEARCH ────────────────────────────────── -->
+    <div class="menu-search-wrap">
+      <input type="text" id="menuSearch" class="menu-search" placeholder="🔍  Rechercher un plat..." />
+      <span class="result-count" id="resultCount">48 plats</span>
+    </div>
+
+    <!-- ── GRILLE DES PLATS ───────────────────────── -->
+    <div class="menu-grid" id="menuGrid">
+
+      <!-- ═══ ANTIPASTI ═══ -->
+      <div class="menu-section-title" data-category="antipasti">
+        <span>Antipasti</span>
+        <div class="section-line"></div>
+      </div>
+
+      <div class="menu-card" data-category="antipasti">
+        <div class="card-left">
+          <div class="card-emoji">🫒</div>
+          <div class="card-info">
+            <div class="card-header">
+              <h3 class="card-name">Bruschetta al Pomodoro</h3>
+              <div class="card-tags"><span class="tag veg">🌿 Végétarien</span></div>
+            </div>
+            <p class="card-desc">Pain grillé au feu de bois, tomates confites, basilic frais, huile d'olive extra vierge et ail rosé.</p>
+            <div class="card-details">
+              <span class="card-allergen">Gluten, Huile</span>
+            </div>
+          </div>
+        </div>
+        <div class="card-right">
+          <span class="card-price">8 €</span>
+          <button class="card-fav" aria-label="Favori">♡</button>
+        </div>
+      </div>
+
+      <div class="menu-card" data-category="antipasti">
+        <div class="card-left">
+          <div class="card-emoji">🦐</div>
+          <div class="card-info">
+            <div class="card-header">
+              <h3 class="card-name">Carpaccio di Gamberi</h3>
+              <div class="card-tags"><span class="tag chef">👨‍🍳 Chef</span></div>
+            </div>
+            <p class="card-desc">Gambas royales crues marinées au citron de Sicile, huile d'olive, câpres et roquette sauvage.</p>
+            <div class="card-details">
+              <span class="card-allergen">Crustacés, Sulfites</span>
+            </div>
+          </div>
+        </div>
+        <div class="card-right">
+          <span class="card-price">14 €</span>
+          <button class="card-fav" aria-label="Favori">♡</button>
+        </div>
+      </div>
+
+      <div class="menu-card" data-category="antipasti">
+        <div class="card-left">
+          <div class="card-emoji">🧀</div>
+          <div class="card-info">
+            <div class="card-header">
+              <h3 class="card-name">Burrata di Puglia</h3>
+              <div class="card-tags"><span class="tag veg">🌿 Végétarien</span><span class="tag new">✨ Nouveau</span></div>
+            </div>
+            <p class="card-desc">Burrata crémeuse de Pouilles, tomates cerises rôties, pesto de basilic, pignons torréfiés.</p>
+            <div class="card-details">
+              <span class="card-allergen">Lait, Fruits à coques</span>
+            </div>
+          </div>
+        </div>
+        <div class="card-right">
+          <span class="card-price">13 €</span>
+          <button class="card-fav" aria-label="Favori">♡</button>
+        </div>
+      </div>
+
+      <div class="menu-card" data-category="antipasti">
+        <div class="card-left">
+          <div class="card-emoji">🥓</div>
+          <div class="card-info">
+            <div class="card-header">
+              <h3 class="card-name">Antipasto della Casa</h3>
+            </div>
+            <p class="card-desc">Assortiment de charcuteries italiennes : prosciutto di Parma 24 mois, bresaola, coppa, olives marinées.</p>
+            <div class="card-details">
+              <span class="card-allergen">Gluten, Sulfites</span>
+            </div>
+          </div>
+        </div>
+        <div class="card-right">
+          <span class="card-price">16 €</span>
+          <button class="card-fav" aria-label="Favori">♡</button>
+        </div>
+      </div>
+
+      <div class="menu-card" data-category="antipasti">
+        <div class="card-left">
+          <div class="card-emoji">🐙</div>
+          <div class="card-info">
+            <div class="card-header">
+              <h3 class="card-name">Polpo alla Griglia</h3>
+              <div class="card-tags"><span class="tag chef">👨‍🍳 Chef</span></div>
+            </div>
+            <p class="card-desc">Poulpe grillé sur braise, pommes de terre fondantes, huile citronnée, paprika fumé et persil plat.</p>
+            <div class="card-details">
+              <span class="card-allergen">Mollusques</span>
+            </div>
+          </div>
+        </div>
+        <div class="card-right">
+          <span class="card-price">17 €</span>
+          <button class="card-fav" aria-label="Favori">♡</button>
+        </div>
+      </div>
+
+      <!-- ═══ PIZZA ═══ -->
+      <div class="menu-section-title" data-category="pizza">
+        <span>Pizza al Forno</span>
+        <div class="section-line"></div>
+      </div>
+
+      <div class="menu-card" data-category="pizza">
+        <div class="card-left">
+          <div class="card-emoji">🍕</div>
+          <div class="card-info">
+            <div class="card-header">
+              <h3 class="card-name">Margherita DOP</h3>
+              <div class="card-tags"><span class="tag veg">🌿 Végétarien</span></div>
+            </div>
+            <p class="card-desc">Tomate San Marzano DOP, mozzarella fior di latte, basilic frais, huile d'olive extra vierge.</p>
+            <div class="card-details">
+              <span class="card-allergen">Gluten, Lait</span>
+            </div>
+          </div>
+        </div>
+        <div class="card-right">
+          <span class="card-price">13 €</span>
+          <button class="card-fav" aria-label="Favori">♡</button>
+        </div>
+      </div>
+
+      <div class="menu-card featured-card" data-category="pizza">
+        <div class="featured-label">⭐ Signature</div>
+        <div class="card-left">
+          <div class="card-emoji">🍕</div>
+          <div class="card-info">
+            <div class="card-header">
+              <h3 class="card-name">Pizza Napolitana STG</h3>
+              <div class="card-tags"><span class="tag chef">👨‍🍳 Chef</span></div>
+            </div>
+            <p class="card-desc">Pâte levain naturel 48h, tomate San Marzano, mozzarella di bufala DOP, basilic, huile fumée.</p>
+            <div class="card-details">
+              <span class="card-allergen">Gluten, Lait</span>
+            </div>
+          </div>
+        </div>
+        <div class="card-right">
+          <span class="card-price">16 €</span>
+          <button class="card-fav" aria-label="Favori">♡</button>
+        </div>
+      </div>
+
+      <div class="menu-card" data-category="pizza">
+        <div class="card-left">
+          <div class="card-emoji">🍄</div>
+          <div class="card-info">
+            <div class="card-header">
+              <h3 class="card-name">Pizza ai Funghi Porcini</h3>
+              <div class="card-tags"><span class="tag veg">🌿 Végétarien</span></div>
+            </div>
+            <p class="card-desc">Crème de truffe blanche, champignons porcini sauvages, mozzarella, parmesan, huile de truffe noire.</p>
+            <div class="card-details">
+              <span class="card-allergen">Gluten, Lait</span>
+            </div>
+          </div>
+        </div>
+        <div class="card-right">
+          <span class="card-price">18 €</span>
+          <button class="card-fav" aria-label="Favori">♡</button>
+        </div>
+      </div>
+
+      <div class="menu-card" data-category="pizza">
+        <div class="card-left">
+          <div class="card-emoji">🥩</div>
+          <div class="card-info">
+            <div class="card-header">
+              <h3 class="card-name">Pizza Diavola</h3>
+              <div class="card-tags"><span class="tag spicy">🌶️ Épicé</span></div>
+            </div>
+            <p class="card-desc">Tomate San Marzano, mozzarella, salami piquant calabrese, piment frais, huile d'olive pimentée.</p>
+            <div class="card-details">
+              <span class="card-allergen">Gluten, Lait</span>
+            </div>
+          </div>
+        </div>
+        <div class="card-right">
+          <span class="card-price">15 €</span>
+          <button class="card-fav" aria-label="Favori">♡</button>
+        </div>
+      </div>
+
+      <div class="menu-card" data-category="pizza">
+        <div class="card-left">
+          <div class="card-emoji">🫙</div>
+          <div class="card-info">
+            <div class="card-header">
+              <h3 class="card-name">Pizza Quattro Formaggi</h3>
+              <div class="card-tags"><span class="tag veg">🌿 Végétarien</span></div>
+            </div>
+            <p class="card-desc">Mozzarella, gorgonzola dolce, provolone affiné, pecorino romano, noix caramélisées, miel de châtaignier.</p>
+            <div class="card-details">
+              <span class="card-allergen">Gluten, Lait, Fruits à coques</span>
+            </div>
+          </div>
+        </div>
+        <div class="card-right">
+          <span class="card-price">17 €</span>
+          <button class="card-fav" aria-label="Favori">♡</button>
+        </div>
+      </div>
+
+      <!-- ═══ PASTA ═══ -->
+      <div class="menu-section-title" data-category="pasta">
+        <span>Pasta Fresca</span>
+        <div class="section-line"></div>
+      </div>
+
+      <div class="menu-card featured-card" data-category="pasta">
+        <div class="featured-label">⭐ Signature</div>
+        <div class="card-left">
+          <div class="card-emoji">🍝</div>
+          <div class="card-info">
+            <div class="card-header">
+              <h3 class="card-name">Tagliatelle al Ragù</h3>
+              <div class="card-tags"><span class="tag chef">👨‍🍳 Chef</span></div>
+            </div>
+            <p class="card-desc">Pâtes fraîches maison, ragù de veau et bœuf mijoté 6h au Chianti, parmesan 24 mois, basilic.</p>
+            <div class="card-details">
+              <span class="card-allergen">Gluten, Œufs, Lait, Sulfites</span>
+            </div>
+          </div>
+        </div>
+        <div class="card-right">
+          <span class="card-price">18 €</span>
+          <button class="card-fav" aria-label="Favori">♡</button>
+        </div>
+      </div>
+
+      <div class="menu-card" data-category="pasta">
+        <div class="card-left">
+          <div class="card-emoji">🍝</div>
+          <div class="card-info">
+            <div class="card-header">
+              <h3 class="card-name">Spaghetti Cacio e Pepe</h3>
+              <div class="card-tags"><span class="tag veg">🌿 Végétarien</span></div>
+            </div>
+            <p class="card-desc">Spaghetti artisanaux, pecorino romano affiné, poivre noir de Kampot fraîchement concassé.</p>
+            <div class="card-details">
+              <span class="card-allergen">Gluten, Lait</span>
+            </div>
+          </div>
+        </div>
+        <div class="card-right">
+          <span class="card-price">15 €</span>
+          <button class="card-fav" aria-label="Favori">♡</button>
+        </div>
+      </div>
+
+      <div class="menu-card" data-category="pasta">
+        <div class="card-left">
+          <div class="card-emoji">🦞</div>
+          <div class="card-info">
+            <div class="card-header">
+              <h3 class="card-name">Linguine all'Astice</h3>
+              <div class="card-tags"><span class="tag chef">👨‍🍳 Chef</span><span class="tag new">✨ Nouveau</span></div>
+            </div>
+            <p class="card-desc">Linguine fraîches, homard breton entier, bisque corsée au cognac, tomates cerises, basilic, beurre de coral.</p>
+            <div class="card-details">
+              <span class="card-allergen">Gluten, Crustacés, Lait</span>
+            </div>
+          </div>
+        </div>
+        <div class="card-right">
+          <span class="card-price">32 €</span>
+          <button class="card-fav" aria-label="Favori">♡</button>
+        </div>
+      </div>
+
+      <div class="menu-card" data-category="pasta">
+        <div class="card-left">
+          <div class="card-emoji">🧅</div>
+          <div class="card-info">
+            <div class="card-header">
+              <h3 class="card-name">Carbonara della Tradizione</h3>
+            </div>
+            <p class="card-desc">Spaghetti, guanciale de Latium, jaunes d'œufs fermiers, pecorino, poivre — recette romaine classique, sans crème.</p>
+            <div class="card-details">
+              <span class="card-allergen">Gluten, Œufs, Lait</span>
+            </div>
+          </div>
+        </div>
+        <div class="card-right">
+          <span class="card-price">17 €</span>
+          <button class="card-fav" aria-label="Favori">♡</button>
+        </div>
+      </div>
+
+      <div class="menu-card" data-category="pasta">
+        <div class="card-left">
+          <div class="card-emoji">🍄</div>
+          <div class="card-info">
+            <div class="card-header">
+              <h3 class="card-name">Risotto al Tartufo</h3>
+              <div class="card-tags"><span class="tag veg">🌿 Végétarien</span><span class="tag chef">👨‍🍳 Chef</span></div>
+            </div>
+            <p class="card-desc">Riz arborio, truffe noire du Périgord râpée à table, parmesan, beurre de Normandie, bouillon de légumes maison.</p>
+            <div class="card-details">
+              <span class="card-allergen">Lait, Sulfites</span>
+            </div>
+          </div>
+        </div>
+        <div class="card-right">
+          <span class="card-price">24 €</span>
+          <button class="card-fav" aria-label="Favori">♡</button>
+        </div>
+      </div>
+
+      <!-- ═══ SECONDI ═══ -->
+      <div class="menu-section-title" data-category="secondi">
+        <span>Secondi Piatti</span>
+        <div class="section-line"></div>
+      </div>
+
+      <div class="menu-card featured-card" data-category="secondi">
+        <div class="featured-label">⭐ Signature</div>
+        <div class="card-left">
+          <div class="card-emoji">🥩</div>
+          <div class="card-info">
+            <div class="card-header">
+              <h3 class="card-name">Osso Buco alla Milanese</h3>
+              <div class="card-tags"><span class="tag chef">👨‍🍳 Chef</span></div>
+            </div>
+            <p class="card-desc">Jarret de veau braisé 4h au vin blanc, gremolata citron-persil-ail, risotto safran accompagnement.</p>
+            <div class="card-details">
+              <span class="card-allergen">Lait, Sulfites, Céréales</span>
+            </div>
+          </div>
+        </div>
+        <div class="card-right">
+          <span class="card-price">26 €</span>
+          <button class="card-fav" aria-label="Favori">♡</button>
+        </div>
+      </div>
+
+      <div class="menu-card" data-category="secondi">
+        <div class="card-left">
+          <div class="card-emoji">🐟</div>
+          <div class="card-info">
+            <div class="card-header">
+              <h3 class="card-name">Branzino al Sale</h3>
+            </div>
+            <p class="card-desc">Loup de mer entier cuit en croûte de sel de Sicile, légumes grillés, salsa verde aux herbes fraîches.</p>
+            <div class="card-details">
+              <span class="card-allergen">Poissons</span>
+            </div>
+          </div>
+        </div>
+        <div class="card-right">
+          <span class="card-price">28 €</span>
+          <button class="card-fav" aria-label="Favori">♡</button>
+        </div>
+      </div>
+
+      <div class="menu-card" data-category="secondi">
+        <div class="card-left">
+          <div class="card-emoji">🍗</div>
+          <div class="card-info">
+            <div class="card-header">
+              <h3 class="card-name">Pollo alla Cacciatora</h3>
+            </div>
+            <p class="card-desc">Poulet fermier mijoté aux olives, tomates, vin rouge, herbes aromatiques, polenta crémeuse.</p>
+            <div class="card-details">
+              <span class="card-allergen">Sulfites, Céréales</span>
+            </div>
+          </div>
+        </div>
+        <div class="card-right">
+          <span class="card-price">22 €</span>
+          <button class="card-fav" aria-label="Favori">♡</button>
+        </div>
+      </div>
+
+      <!-- ═══ DOLCI ═══ -->
+      <div class="menu-section-title" data-category="dolci">
+        <span>Dolci</span>
+        <div class="section-line"></div>
+      </div>
+
+      <div class="menu-card featured-card" data-category="dolci">
+        <div class="featured-label">⭐ Signature</div>
+        <div class="card-left">
+          <div class="card-emoji">🍮</div>
+          <div class="card-info">
+            <div class="card-header">
+              <h3 class="card-name">Tiramisù della Nonna</h3>
+              <div class="card-tags"><span class="tag veg">🌿 Végétarien</span></div>
+            </div>
+            <p class="card-desc">Biscuits savoiardi imbibés d'espresso intense, mascarpone onctueux, jaunes d'œufs, cacao Valrhona.</p>
+            <div class="card-details">
+              <span class="card-allergen">Gluten, Œufs, Lait</span>
+            </div>
+          </div>
+        </div>
+        <div class="card-right">
+          <span class="card-price">9 €</span>
+          <button class="card-fav" aria-label="Favori">♡</button>
+        </div>
+      </div>
+
+      <div class="menu-card" data-category="dolci">
+        <div class="card-left">
+          <div class="card-emoji">🍦</div>
+          <div class="card-info">
+            <div class="card-header">
+              <h3 class="card-name">Panna Cotta al Limone</h3>
+              <div class="card-tags"><span class="tag veg">🌿 Végétarien</span></div>
+            </div>
+            <p class="card-desc">Crème cuite vanille de Madagascar, coulis de fruits rouges frais, zestes confits de citron de Sicile.</p>
+            <div class="card-details">
+              <span class="card-allergen">Lait</span>
+            </div>
+          </div>
+        </div>
+        <div class="card-right">
+          <span class="card-price">8 €</span>
+          <button class="card-fav" aria-label="Favori">♡</button>
+        </div>
+      </div>
+
+      <div class="menu-card" data-category="dolci">
+        <div class="card-left">
+          <div class="card-emoji">🧁</div>
+          <div class="card-info">
+            <div class="card-header">
+              <h3 class="card-name">Cannoli Siciliani</h3>
+              <div class="card-tags"><span class="tag veg">🌿 Végétarien</span></div>
+            </div>
+            <p class="card-desc">Coquilles frites croustillantes, ricotta sicilienne sucrée, écorces d'orange confites, pistaches de Bronte.</p>
+            <div class="card-details">
+              <span class="card-allergen">Gluten, Lait, Fruits à coques</span>
+            </div>
+          </div>
+        </div>
+        <div class="card-right">
+          <span class="card-price">8 €</span>
+          <button class="card-fav" aria-label="Favori">♡</button>
+        </div>
+      </div>
+
+      <div class="menu-card" data-category="dolci">
+        <div class="card-left">
+          <div class="card-emoji">🍫</div>
+          <div class="card-info">
+            <div class="card-header">
+              <h3 class="card-name">Fondant au Chocolat Noir</h3>
+              <div class="card-tags"><span class="tag veg">🌿 Végétarien</span><span class="tag new">✨ Nouveau</span></div>
+            </div>
+            <p class="card-desc">Coulant chocolat 70%, cœur liquide Nutella artisanal, glace vanille, éclats de noisettes du Piémont.</p>
+            <div class="card-details">
+              <span class="card-allergen">Gluten, Œufs, Lait, Fruits à coques</span>
+            </div>
+          </div>
+        </div>
+        <div class="card-right">
+          <span class="card-price">10 €</span>
+          <button class="card-fav" aria-label="Favori">♡</button>
+        </div>
+      </div>
+
+      <!-- ═══ VINI ═══ -->
+      <div class="menu-section-title" data-category="vini">
+        <span>Vini & Beverages</span>
+        <div class="section-line"></div>
+      </div>
+
+      <div class="menu-card featured-card" data-category="vini">
+        <div class="featured-label">⭐ Coup de Cœur</div>
+        <div class="card-left">
+          <div class="card-emoji">🍷</div>
+          <div class="card-info">
+            <div class="card-header">
+              <h3 class="card-name">Barolo DOCG 2019</h3>
+              <div class="card-tags"><span class="tag">Piémont · Rouge</span></div>
+            </div>
+            <p class="card-desc">Le roi des vins italiens. Notes de cerise noire, rose fanée et truffe. Tanins veloutés, finale interminable.</p>
+            <div class="card-details">
+              <span class="card-allergen">Sulfites</span>
+            </div>
+          </div>
+        </div>
+        <div class="card-right">
+          <span class="card-price">48 €</span>
+          <button class="card-fav" aria-label="Favori">♡</button>
+        </div>
+      </div>
+
+      <div class="menu-card" data-category="vini">
+        <div class="card-left">
+          <div class="card-emoji">🥂</div>
+          <div class="card-info">
+            <div class="card-header">
+              <h3 class="card-name">Prosecco Valdobbiadene DOCG</h3>
+              <div class="card-tags"><span class="tag">Vénétie · Pétillant</span></div>
+            </div>
+            <p class="card-desc">Bulles fines et persistantes, arômes de pêche blanche, fleurs de pommier, finale fraîche et légère.</p>
+            <div class="card-details">
+              <span class="card-allergen">Sulfites</span>
+            </div>
+          </div>
+        </div>
+        <div class="card-right">
+          <span class="card-price">28 €</span>
+          <button class="card-fav" aria-label="Favori">♡</button>
+        </div>
+      </div>
+
+      <div class="menu-card" data-category="vini">
+        <div class="card-left">
+          <div class="card-emoji">🍋</div>
+          <div class="card-info">
+            <div class="card-header">
+              <h3 class="card-name">Limonata Siciliana</h3>
+              <div class="card-tags"><span class="tag veg">Sans alcool</span></div>
+            </div>
+            <p class="card-desc">Citrons de Sicile pressés à la minute, sirop de canne, eau pétillante, menthe fraîche. Fait maison.</p>
+          </div>
+        </div>
+        <div class="card-right">
+          <span class="card-price">5 €</span>
+          <button class="card-fav" aria-label="Favori">♡</button>
+        </div>
+      </div>
+
+    </div><!-- /menu-grid -->
+
+    <!-- ── NO RESULTS ──────────────────────────────── -->
+    <div class="no-results" id="noResults" style="display:none;">
+      <span>🍽️</span>
+      <p>Aucun plat trouvé…</p>
+      <button onclick="resetFilters()">Voir tout le menu</button>
+    </div>
+
+  </main>
+
+  <!-- ══════════════════════════════ CTA RÉSERVATION ══ -->
+  <section class="menu-cta">
+    <div class="menu-cta-inner">
+      <p class="section-eyebrow">Prêt à passer à table ?</p>
+      <h2 class="section-title">Réservez votre <em>expérience</em></h2>
+      <p>Nos tables sont disponibles du lundi au dimanche. Réservez dès maintenant pour garantir votre place.</p>
+      <a href="reservation.html" class="btn btn-primary">Réserver une Table →</a>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════ FOOTER ══ -->
+  <footer class="footer">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <span class="logo-script footer-logo">La Tavola</span>
+        <span class="logo-sub">di Roma</span>
+        <p>L'authenticité italienne au cœur de Paris depuis 1996.</p>
+        <div class="social-links">
+          <a href="#" class="social-link" aria-label="Instagram">📸</a>
+          <a href="#" class="social-link" aria-label="Facebook">📘</a>
+          <a href="#" class="social-link" aria-label="TripAdvisor">⭐</a>
+        </div>
+      </div>
+      <div class="footer-nav">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="menu.html">Menu</a></li>
+          <li><a href="index.html#about">Notre histoire</a></li>
+          <li><a href="reservation.html">Réservation</a></li>
+        </ul>
+      </div>
+      <div class="footer-nav">
+        <h4>Menu</h4>
+        <ul>
+          <li><a href="#">Antipasti</a></li>
+          <li><a href="#">Pasta Fresca</a></li>
+          <li><a href="#">Secondi Piatti</a></li>
+          <li><a href="#">Dolci</a></li>
+        </ul>
+      </div>
+      <div class="footer-newsletter">
+        <h4>Newsletter</h4>
+        <p>Recevez nos offres spéciales et événements.</p>
+        <div class="newsletter-form">
+          <input type="email" placeholder="Votre email..." />
+          <button type="button">→</button>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 La Tavola di Roma. Tous droits réservés.</span>
+      <span>Fait avec ❤️ à Paris</span>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/menu.js"></script>
+</body>
+</html>

@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- ═══ SEO ═══ -->
+  <title>Galerie — La Tavola di Roma | Restaurant Italien Paris</title>
+  <meta name="description" content="Découvrez l'ambiance et les plats de La Tavola di Roma en images. Salle du restaurant, plats signature, moments de vie italienne au cœur de Paris." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://www.latavola-diroma.fr/galerie.html" />
+  <meta property="og:title"       content="Galerie — La Tavola di Roma" />
+  <meta property="og:description" content="Photos de notre restaurant, nos plats et notre ambiance italienne à Paris." />
+  <meta property="og:image"       content="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1200&q=80" />
+  <meta property="og:url"         content="https://www.latavola-diroma.fr/galerie.html" />
+  <meta property="og:type"        content="website" />
+
+  <!-- ═══ FAVICONS ═══ -->
+  <link rel="icon"             href="assets/favicon.ico"          type="image/x-icon" />
+  <link rel="icon"             href="assets/favicon.svg"          type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" sizes="180x180" />
+  <link rel="manifest"         href="site.webmanifest" />
+  <meta name="theme-color"     content="#C4622D" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&family=Pinyon+Script&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+  <link rel="stylesheet" href="css/galerie.css" />
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════ NAVBAR ══ -->
+  <nav class="navbar scrolled" id="navbar">
+    <div class="nav-logo">
+      <span class="logo-script">La Tavola</span>
+      <span class="logo-sub">di Roma</span>
+    </div>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html"       class="nav-link">Accueil</a></li>
+      <li><a href="menu.html"        class="nav-link">Menu</a></li>
+      <li><a href="galerie.html"     class="nav-link active">Galerie</a></li>
+      <li><a href="index.html#about" class="nav-link">À propos</a></li>
+      <li><a href="reservation.html" class="nav-link nav-cta">Réserver</a></li>
+    </ul>
+    <button class="burger" id="burger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- ════════════════════════════════ GALERIE HERO ══ -->
+  <section class="gal-hero">
+    <div class="gal-hero-bg"></div>
+    <div class="gal-hero-content reveal-up">
+      <p class="section-eyebrow">Chaque plat, une histoire</p>
+      <h1 class="gal-hero-title">Notre <em>Galerie</em></h1>
+      <p class="gal-hero-sub">L'art de la table à l'italienne, capturé en images.</p>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════ FILTRES GALERIE ══ -->
+  <div class="gal-filters-bar">
+    <div class="gal-filters">
+      <button class="gal-filter active" data-gfilter="all">Tout voir</button>
+      <button class="gal-filter" data-gfilter="salle">🏛️ La Salle</button>
+      <button class="gal-filter" data-gfilter="plats">🍝 Les Plats</button>
+      <button class="gal-filter" data-gfilter="pizza">🍕 Pizza</button>
+      <button class="gal-filter" data-gfilter="dolci">🍮 Dolci</button>
+      <button class="gal-filter" data-gfilter="vins">🍷 Vins</button>
+      <button class="gal-filter" data-gfilter="equipe">👨‍🍳 Équipe</button>
+    </div>
+    <span class="gal-count" id="galCount">24 photos</span>
+  </div>
+
+  <!-- ══════════════════════════════ MASONRY GRID ══ -->
+  <main class="gal-main">
+    <div class="masonry-grid" id="masonryGrid">
+
+      <!-- ── SALLE ── -->
+      <div class="gal-item tall" data-gcat="salle">
+        <div class="gal-img" style="background-image:url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=900&q=80')"></div>
+        <div class="gal-overlay">
+          <span class="gal-cat">La Salle</span>
+          <h3>L'âme du restaurant</h3>
+          <p>Notre salle principale, où chaque repas devient un souvenir.</p>
+          <button class="gal-zoom" aria-label="Agrandir">⤢</button>
+        </div>
+      </div>
+
+      <div class="gal-item" data-gcat="plats">
+        <div class="gal-img" style="background-image:url('https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?w=700&q=80')"></div>
+        <div class="gal-overlay">
+          <span class="gal-cat">Les Plats</span>
+          <h3>Tagliatelle al Ragù</h3>
+          <p>Pâtes fraîches maison, ragù mijoté 6h.</p>
+          <button class="gal-zoom" aria-label="Agrandir">⤢</button>
+        </div>
+      </div>
+
+      <div class="gal-item" data-gcat="pizza">
+        <div class="gal-img" style="background-image:url('https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=700&q=80')"></div>
+        <div class="gal-overlay">
+          <span class="gal-cat">Pizza</span>
+          <h3>Napolitana STG</h3>
+          <p>Pâte levain 48h, mozzarella di bufala DOP.</p>
+          <button class="gal-zoom" aria-label="Agrandir">⤢</button>
+        </div>
+      </div>
+
+      <div class="gal-item wide" data-gcat="salle">
+        <div class="gal-img" style="background-image:url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1200&q=80')"></div>
+        <div class="gal-overlay">
+          <span class="gal-cat">La Salle</span>
+          <h3>Ambiance tamisée</h3>
+          <p>Une lumière chaude pour chaque soirée mémorable.</p>
+          <button class="gal-zoom" aria-label="Agrandir">⤢</button>
+        </div>
+      </div>
+
+      <div class="gal-item" data-gcat="vins">
+        <div class="gal-img" style="background-image:url('https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=700&q=80')"></div>
+        <div class="gal-overlay">
+          <span class="gal-cat">Vins</span>
+          <h3>Cave à vins</h3>
+          <p>Plus de 300 références de vignerons italiens.</p>
+          <button class="gal-zoom" aria-label="Agrandir">⤢</button>
+        </div>
+      </div>
+
+      <div class="gal-item tall" data-gcat="equipe">
+        <div class="gal-img" style="background-image:url('https://images.unsplash.com/photo-1577219491135-ce391730fb2c?w=700&q=80')"></div>
+        <div class="gal-overlay">
+          <span class="gal-cat">Équipe</span>
+          <h3>Chef Antonio Moretti</h3>
+          <p>28 ans de passion au service de l'authenticité italienne.</p>
+          <button class="gal-zoom" aria-label="Agrandir">⤢</button>
+        </div>
+      </div>
+
+      <div class="gal-item" data-gcat="dolci">
+        <div class="gal-img" style="background-image:url('https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?w=700&q=80')"></div>
+        <div class="gal-overlay">
+          <span class="gal-cat">Dolci</span>
+          <h3>Tiramisù della Nonna</h3>
+          <p>La recette originale de la nonna du Chef.</p>
+          <button class="gal-zoom" aria-label="Agrandir">⤢</button>
+        </div>
+      </div>
+
+      <div class="gal-item" data-gcat="plats">
+        <div class="gal-img" style="background-image:url('https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=700&q=80')"></div>
+        <div class="gal-overlay">
+          <span class="gal-cat">Les Plats</span>
+          <h3>Carpaccio di Gamberi</h3>
+          <p>Gambas royales, citron de Sicile, roquette sauvage.</p>
+          <button class="gal-zoom" aria-label="Agrandir">⤢</button>
+        </div>
+      </div>
+
+      <div class="gal-item wide" data-gcat="plats">
+        <div class="gal-img" style="background-image:url('https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?w=1200&q=80')"></div>
+        <div class="gal-overlay">
+          <span class="gal-cat">Les Plats</span>
+          <h3>Osso Buco alla Milanese</h3>
+          <p>Jarret de veau braisé 4h, risotto safran maison.</p>
+          <button class="gal-zoom" aria-label="Agrandir">⤢</button>
+        </div>
+      </div>
+
+      <div class="gal-item" data-gcat="pizza">
+        <div class="gal-img" style="background-image:url('https://images.unsplash.com/photo-1513104890138-7c749659a591?w=700&q=80')"></div>
+        <div class="gal-overlay">
+          <span class="gal-cat">Pizza</span>
+          <h3>Four à bois traditionnel</h3>
+          <p>500°C pour une cuisson parfaite en 90 secondes.</p>
+          <button class="gal-zoom" aria-label="Agrandir">⤢</button>
+        </div>
+      </div>
+
+      <div class="gal-item" data-gcat="vins">
+        <div class="gal-img" style="background-image:url('https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=700&q=80')"></div>
+        <div class="gal-overlay">
+          <span class="gal-cat">Vins</span>
+          <h3>Barolo DOCG</h3>
+          <p>Le roi des vins italiens, millésime 2019.</p>
+          <button class="gal-zoom" aria-label="Agrandir">⤢</button>
+        </div>
+      </div>
+
+      <div class="gal-item tall" data-gcat="salle">
+        <div class="gal-img" style="background-image:url('https://images.unsplash.com/photo-1559339352-11d035aa65de?w=700&q=80')"></div>
+        <div class="gal-overlay">
+          <span class="gal-cat">La Salle</span>
+          <h3>Tables dressées</h3>
+          <p>Chaque détail soigné pour votre confort.</p>
+          <button class="gal-zoom" aria-label="Agrandir">⤢</button>
+        </div>
+      </div>
+
+      <div class="gal-item" data-gcat="dolci">
+        <div class="gal-img" style="background-image:url('https://images.unsplash.com/photo-1567171466295-4afa63d45416?w=700&q=80')"></div>
+        <div class="gal-overlay">
+          <span class="gal-cat">Dolci</span>
+          <h3>Panna Cotta al Limone</h3>
+          <p>Coulis de fruits rouges, zestes de Sicile.</p>
+          <button class="gal-zoom" aria-label="Agrandir">⤢</button>
+        </div>
+      </div>
+
+      <div class="gal-item" data-gcat="plats">
+        <div class="gal-img" style="background-image:url('https://images.unsplash.com/photo-1473093295043-cdd812d0e601?w=700&q=80')"></div>
+        <div class="gal-overlay">
+          <span class="gal-cat">Les Plats</span>
+          <h3>Pasta Fresca</h3>
+          <p>Faites à la main chaque matin par notre équipe.</p>
+          <button class="gal-zoom" aria-label="Agrandir">⤢</button>
+        </div>
+      </div>
+
+      <div class="gal-item wide" data-gcat="equipe">
+        <div class="gal-img" style="background-image:url('https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1200&q=80')"></div>
+        <div class="gal-overlay">
+          <span class="gal-cat">Équipe</span>
+          <h3>En cuisine</h3>
+          <p>Une brigade soudée, passionnée, au service de l'excellence.</p>
+          <button class="gal-zoom" aria-label="Agrandir">⤢</button>
+        </div>
+      </div>
+
+      <div class="gal-item" data-gcat="salle">
+        <div class="gal-img" style="background-image:url('https://images.unsplash.com/photo-1466637574441-749b8f19452f?w=700&q=80')"></div>
+        <div class="gal-overlay">
+          <span class="gal-cat">La Salle</span>
+          <h3>Bar & Aperitivo</h3>
+          <p>L'heure de l'Aperol Spritz avant le dîner.</p>
+          <button class="gal-zoom" aria-label="Agrandir">⤢</button>
+        </div>
+      </div>
+
+      <div class="gal-item" data-gcat="pizza">
+        <div class="gal-img" style="background-image:url('https://images.unsplash.com/photo-1593560708920-61dd98c46a4e?w=700&q=80')"></div>
+        <div class="gal-overlay">
+          <span class="gal-cat">Pizza</span>
+          <h3>Quattro Formaggi</h3>
+          <p>Mozzarella, gorgonzola, provolone, pecorino.</p>
+          <button class="gal-zoom" aria-label="Agrandir">⤢</button>
+        </div>
+      </div>
+
+      <div class="gal-item" data-gcat="dolci">
+        <div class="gal-img" style="background-image:url('https://images.unsplash.com/photo-1488477181946-6428a0291777?w=700&q=80')"></div>
+        <div class="gal-overlay">
+          <span class="gal-cat">Dolci</span>
+          <h3>Cannoli Siciliani</h3>
+          <p>Ricotta de Sicile, pistaches de Bronte, oranges confites.</p>
+          <button class="gal-zoom" aria-label="Agrandir">⤢</button>
+        </div>
+      </div>
+
+    </div><!-- /masonry-grid -->
+
+    <!-- NO RESULTS -->
+    <div class="gal-no-results" id="galNoResults" style="display:none;">
+      <span>📷</span>
+      <p>Aucune photo dans cette catégorie.</p>
+      <button onclick="resetGalFilter()">Voir toutes les photos</button>
+    </div>
+
+  </main>
+
+  <!-- ══════════════════════════════════ LIGHTBOX ══ -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Visionneuse photos">
+    <button class="lb-close" id="lbClose" aria-label="Fermer">✕</button>
+    <button class="lb-prev"  id="lbPrev"  aria-label="Photo précédente">‹</button>
+    <button class="lb-next"  id="lbNext"  aria-label="Photo suivante">›</button>
+
+    <div class="lb-content">
+      <div class="lb-img-wrap">
+        <div class="lb-img" id="lbImg"></div>
+        <div class="lb-loader" id="lbLoader">
+          <div class="lb-spinner"></div>
+        </div>
+      </div>
+      <div class="lb-caption">
+        <span class="lb-cat"  id="lbCat"></span>
+        <h3 class="lb-title"  id="lbTitle"></h3>
+        <p  class="lb-desc"   id="lbDesc"></p>
+        <span class="lb-counter" id="lbCounter"></span>
+      </div>
+    </div>
+  </div>
+  <div class="lb-backdrop" id="lbBackdrop"></div>
+
+  <!-- ════════════════════════════════════ CTA ══ -->
+  <section class="gal-cta">
+    <div class="gal-cta-inner">
+      <p class="section-eyebrow">Vous avez vu, maintenant goûtez</p>
+      <h2 class="section-title">Réservez votre <em>table</em></h2>
+      <p>Une expérience qui dépasse les photos. Rejoignez-nous à Paris.</p>
+      <div class="gal-cta-btns">
+        <a href="reservation.html" class="btn btn-primary">Réserver une Table →</a>
+        <a href="menu.html"        class="btn btn-ghost">Voir le Menu</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════ FOOTER ══ -->
+  <footer class="footer">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <span class="logo-script footer-logo">La Tavola</span>
+        <span class="logo-sub">di Roma</span>
+        <p>L'authenticité italienne au cœur de Paris depuis 1996.</p>
+        <div class="social-links">
+          <a href="#" class="social-link" aria-label="Instagram">📸</a>
+          <a href="#" class="social-link" aria-label="Facebook">📘</a>
+          <a href="#" class="social-link" aria-label="TripAdvisor">⭐</a>
+        </div>
+      </div>
+      <div class="footer-nav">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="menu.html">Menu</a></li>
+          <li><a href="galerie.html">Galerie</a></li>
+          <li><a href="reservation.html">Réservation</a></li>
+        </ul>
+      </div>
+      <div class="footer-nav">
+        <h4>Menu</h4>
+        <ul>
+          <li><a href="menu.html">Antipasti</a></li>
+          <li><a href="menu.html">Pizza & Pasta</a></li>
+          <li><a href="menu.html">Secondi</a></li>
+          <li><a href="menu.html">Dolci & Vini</a></li>
+        </ul>
+      </div>
+      <div class="footer-newsletter">
+        <h4>Newsletter</h4>
+        <p>Recevez nos offres spéciales et événements.</p>
+        <div class="newsletter-form">
+          <input type="email" placeholder="Votre email..." />
+          <button type="button">→</button>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 La Tavola di Roma. Tous droits réservés.</span>
+      <span>Fait avec ❤️ à Paris</span>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/galerie.js"></script>
+</body>
+</html>

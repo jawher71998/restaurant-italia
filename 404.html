@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>404 — Page introuvable · La Tavola di Roma</title>
+  <meta name="robots" content="noindex, nofollow" />
+
+  <!-- ═══ FAVICONS ═══ -->
+  <link rel="icon"             href="assets/favicon.ico"          type="image/x-icon" />
+  <link rel="icon"             href="assets/favicon.svg"          type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" sizes="180x180" />
+  <meta name="theme-color"     content="#C4622D" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&family=Pinyon+Script&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <link rel="stylesheet" href="css/404.css" />
+</head>
+<body class="page-404">
+
+  <!-- ══════════════════════════════════════ NAVBAR ══ -->
+  <nav class="navbar scrolled" id="navbar">
+    <div class="nav-logo">
+      <span class="logo-script">La Tavola</span>
+      <span class="logo-sub">di Roma</span>
+    </div>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html"       class="nav-link">Accueil</a></li>
+      <li><a href="menu.html"        class="nav-link">Menu</a></li>
+      <li><a href="galerie.html"     class="nav-link">Galerie</a></li>
+      <li><a href="index.html#about" class="nav-link">À propos</a></li>
+      <li><a href="reservation.html" class="nav-link nav-cta">Réserver</a></li>
+    </ul>
+    <button class="burger" id="burger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- ══════════════════════════════════ 404 CONTENT ══ -->
+  <main class="err-page">
+
+    <!-- Background décoratif -->
+    <div class="err-bg">
+      <div class="err-grain"></div>
+      <div class="err-glow"></div>
+    </div>
+
+    <!-- Texte décoratif géant -->
+    <div class="err-deco-num">404</div>
+
+    <div class="err-content">
+
+      <!-- Icône animée -->
+      <div class="err-icon reveal-up">
+        <div class="err-plate">
+          <span class="plate-emoji">🍝</span>
+          <div class="plate-ring r1"></div>
+          <div class="plate-ring r2"></div>
+        </div>
+      </div>
+
+      <!-- Texte principal -->
+      <div class="err-text reveal-up delay-1">
+        <p class="section-eyebrow">Erreur 404</p>
+        <h1 class="err-title">
+          Cette page s'est<br />
+          <em>évaporée comme la vapeur</em><br />
+          d'un risotto
+        </h1>
+        <p class="err-desc">
+          Pas de panique ! La page que vous cherchez n'existe plus ou a été déplacée.
+          Notre Chef vous conseille de retourner à l'essentiel.
+        </p>
+      </div>
+
+      <!-- Liens rapides -->
+      <div class="err-links reveal-up delay-2">
+        <a href="index.html"       class="err-link-card">
+          <span class="elc-icon">🏠</span>
+          <div class="elc-text">
+            <strong>Accueil</strong>
+            <span>Retour au début</span>
+          </div>
+          <span class="elc-arrow">→</span>
+        </a>
+        <a href="menu.html"        class="err-link-card">
+          <span class="elc-icon">🍕</span>
+          <div class="elc-text">
+            <strong>Notre Menu</strong>
+            <span>48 plats à découvrir</span>
+          </div>
+          <span class="elc-arrow">→</span>
+        </a>
+        <a href="galerie.html"     class="err-link-card">
+          <span class="elc-icon">📷</span>
+          <div class="elc-text">
+            <strong>Galerie</strong>
+            <span>Nos plus belles photos</span>
+          </div>
+          <span class="elc-arrow">→</span>
+        </a>
+        <a href="reservation.html" class="err-link-card featured-card-404">
+          <span class="elc-icon">🍽️</span>
+          <div class="elc-text">
+            <strong>Réserver une table</strong>
+            <span>Disponible dès ce soir</span>
+          </div>
+          <span class="elc-arrow">→</span>
+        </a>
+      </div>
+
+      <!-- Recherche rapide -->
+      <div class="err-search reveal-up delay-3">
+        <p class="err-search-label">Ou cherchez directement :</p>
+        <div class="err-search-bar">
+          <input
+            type="text"
+            id="errSearch"
+            placeholder="Ex : pizza, réservation, horaires…"
+            aria-label="Rechercher sur le site"
+          />
+          <button type="button" id="errSearchBtn" aria-label="Rechercher">🔍</button>
+        </div>
+        <div class="err-search-results" id="errSearchResults"></div>
+      </div>
+
+      <!-- Compteur de retour auto -->
+      <p class="err-timer reveal-up delay-4" id="errTimer">
+        Redirection automatique vers l'accueil dans <strong id="countdown">15</strong>s
+        — <a href="index.html">y aller maintenant</a>
+      </p>
+
+    </div>
+  </main>
+
+  <!-- ══════════════════════════════════════ FOOTER ══ -->
+  <footer class="footer">
+    <div class="footer-bottom" style="padding: 1.5rem 4%;">
+      <span>© 2026 La Tavola di Roma · 12 Rue de la Paix, 75001 Paris</span>
+      <span><a href="tel:+33142001234" style="color:var(--text-light);">📞 +33 1 42 00 12 34</a></span>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/404.js"></script>
+</body>
+</html>

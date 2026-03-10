@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Background circle -->
+  <circle cx="32" cy="32" r="32" fill="#1A0F0A"/>
+  <!-- Outer decorative ring -->
+  <circle cx="32" cy="32" r="28" fill="none" stroke="#C9A84C" stroke-width="1.2" opacity="0.6"/>
+  <!-- Letter T stylized -->
+  <text x="32" y="46" 
+    font-family="Georgia, serif" 
+    font-size="34" 
+    font-style="italic"
+    font-weight="300"
+    fill="#C9A84C" 
+    text-anchor="middle">T</text>
+  <!-- Small dot decorations -->
+  <circle cx="16" cy="32" r="1.5" fill="#C4622D" opacity="0.8"/>
+  <circle cx="48" cy="32" r="1.5" fill="#C4622D" opacity="0.8"/>
+</svg>
