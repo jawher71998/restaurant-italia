@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard — La Tavola di Roma</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" href="../assets/favicon.ico" type="image/x-icon" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Jost:wght@300;400;500;600&family=Pinyon+Script&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/admin.css" />
+</head>
+<body class="dashboard-body">
+
+  <!-- ══════════════════════════ SIDEBAR ══ -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-logo">
+      <span class="logo-script">La Tavola</span>
+      <span class="logo-sub">Admin</span>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a href="#dashboard" class="snav active" data-section="dashboard">
+        <span class="snav-icon">📊</span>
+        <span>Dashboard</span>
+      </a>
+      <a href="#reservations" class="snav" data-section="reservations">
+        <span class="snav-icon">📅</span>
+        <span>Réservations</span>
+        <span class="snav-badge" id="badgeEnAttente">0</span>
+      </a>
+      <a href="#clients" class="snav" data-section="clients">
+        <span class="snav-icon">👥</span>
+        <span>Clients</span>
+      </a>
+      <a href="#menu" class="snav" data-section="menu">
+        <span class="snav-icon">🍽️</span>
+        <span>Menu</span>
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="admin-info">
+        <span class="admin-avatar">👨‍🍳</span>
+        <div>
+          <strong id="adminName">Admin</strong>
+          <span id="adminEmail">—</span>
+        </div>
+      </div>
+      <button class="logout-btn" id="logoutBtn">
+        🚪 Déconnexion
+      </button>
+      <a href="../index.html" class="site-link" target="_blank">
+        🌐 Voir le site
+      </a>
+    </div>
+  </aside>
+
+  <!-- ══════════════════════════ MAIN ══ -->
+  <main class="dashboard-main">
+
+    <!-- Header -->
+    <header class="dash-header">
+      <button class="burger-admin" id="burgerAdmin">☰</button>
+      <div class="dash-header-left">
+        <h2 id="dashTitle">Dashboard</h2>
+        <span id="dashDate"></span>
+      </div>
+      <div class="dash-header-right">
+        <div class="notif-btn" id="notifBtn">
+          🔔
+          <span class="notif-dot" id="notifDot" style="display:none;"></span>
+        </div>
+        <span class="header-status">
+          <span class="status-dot"></span>
+          En ligne
+        </span>
+      </div>
+    </header>
+
+    <!-- ═══════ SECTION DASHBOARD ══ -->
+    <section class="dash-section active" id="section-dashboard">
+
+      <!-- Stats cards -->
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-icon">📅</div>
+          <div class="stat-info">
+            <span class="stat-value" id="statAujourdhui">—</span>
+            <span class="stat-label">Réservations aujourd'hui</span>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">⏳</div>
+          <div class="stat-info">
+            <span class="stat-value" id="statEnAttente">—</span>
+            <span class="stat-label">En attente de confirmation</span>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">👥</div>
+          <div class="stat-info">
+            <span class="stat-value" id="statCouverts">—</span>
+            <span class="stat-label">Couverts ce soir</span>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">📈</div>
+          <div class="stat-info">
+            <span class="stat-value" id="statSemaine">—</span>
+            <span class="stat-label">Réservations cette semaine</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Réservations du jour -->
+      <div class="dash-block">
+        <div class="block-header">
+          <h3>📅 Réservations du jour</h3>
+          <button class="btn-refresh" id="refreshDashboard">🔄 Actualiser</button>
+        </div>
+        <div id="todayList" class="today-list">
+          <div class="loading-state">⏳ Chargement...</div>
+        </div>
+      </div>
+
+      <!-- Prochaines réservations -->
+      <div class="dash-block">
+        <div class="block-header">
+          <h3>🔜 Prochaines réservations</h3>
+        </div>
+        <div id="upcomingList" class="today-list">
+          <div class="loading-state">⏳ Chargement...</div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ═══════ SECTION RÉSERVATIONS ══ -->
+    <section class="dash-section" id="section-reservations">
+
+      <!-- Filtres -->
+      <div class="filters-bar">
+        <div class="filter-group">
+          <button class="filter-btn active" data-filter="all">Toutes</button>
+          <button class="filter-btn" data-filter="en_attente">⏳ En attente</button>
+          <button class="filter-btn" data-filter="confirmee">✅ Confirmées</button>
+          <button class="filter-btn" data-filter="annulee">❌ Annulées</button>
+        </div>
+        <div class="search-wrap">
+          <input type="text" id="searchRes" placeholder="🔍 Nom, email, ref..." />
+        </div>
+      </div>
+
+      <!-- Tableau -->
+      <div class="table-wrap">
+        <table class="res-table">
+          <thead>
+            <tr>
+              <th>Réf</th>
+              <th>Client</th>
+              <th>Date</th>
+              <th>Heure</th>
+              <th>Couverts</th>
+              <th>Statut</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="resTableBody">
+            <tr><td colspan="7" class="loading-state">⏳ Chargement...</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+    </section>
+
+    <!-- ═══════ SECTION CLIENTS ══ -->
+    <section class="dash-section" id="section-clients">
+      <div class="dash-block">
+        <div class="block-header">
+          <h3>👥 Liste des clients</h3>
+          <span id="clientCount" class="count-badge">0 clients</span>
+        </div>
+        <div class="table-wrap">
+          <table class="res-table">
+            <thead>
+              <tr>
+                <th>Nom</th>
+                <th>Email</th>
+                <th>Téléphone</th>
+                <th>Réservations</th>
+                <th>Dernière visite</th>
+              </tr>
+            </thead>
+            <tbody id="clientsTableBody">
+              <tr><td colspan="5" class="loading-state">⏳ Chargement...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════ SECTION MENU ══ -->
+    <section class="dash-section" id="section-menu">
+      <div class="dash-block">
+        <div class="block-header">
+          <h3>🍽️ Éditeur de Menu</h3>
+          <span class="coming-soon">🚧 Étape O — Bientôt disponible</span>
+        </div>
+        <div class="empty-state">
+          <span>🍝</span>
+          <p>L'éditeur de menu arrive à l'étape O.</p>
+          <p>Tu pourras modifier les plats et les prix sans toucher au code.</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ══════════════ MODAL DÉTAIL RÉSERVATION ══ -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal-card" id="modalCard">
+      <button class="modal-close" id="modalClose">✕</button>
+      <h3 class="modal-title">Détail de la réservation</h3>
+      <div id="modalBody"></div>
+      <div class="modal-actions" id="modalActions"></div>
+    </div>
+  </div>
+
+  <!-- Supabase SDK -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/dashboard.js"></script>
+</body>
+</html>

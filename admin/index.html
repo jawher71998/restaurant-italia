@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin — La Tavola di Roma</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" href="../assets/favicon.ico" type="image/x-icon" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Jost:wght@300;400;500&family=Pinyon+Script&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/admin.css" />
+</head>
+<body class="login-body">
+
+  <!-- Fond décoratif -->
+  <div class="login-bg">
+    <div class="login-bg-overlay"></div>
+    <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=1600&q=80" alt="" />
+  </div>
+
+  <!-- Carte login -->
+  <div class="login-card">
+
+    <!-- Logo -->
+    <div class="login-logo">
+      <span class="logo-script">La Tavola</span>
+      <span class="logo-sub">di Roma — Administration</span>
+    </div>
+
+    <h1 class="login-title">Connexion Admin</h1>
+    <p class="login-sub">Accès réservé au personnel autorisé</p>
+
+    <!-- Message erreur -->
+    <div class="login-error" id="loginError">
+      <span>⚠️</span>
+      <span id="loginErrorMsg">Email ou mot de passe incorrect.</span>
+    </div>
+
+    <!-- Formulaire -->
+    <form class="login-form" id="loginForm">
+
+      <div class="field-group">
+        <label for="adminEmail">Email</label>
+        <input
+          type="email"
+          id="adminEmail"
+          placeholder="admin@latavola.fr"
+          autocomplete="email"
+          required
+        />
+      </div>
+
+      <div class="field-group">
+        <label for="adminPassword">Mot de passe</label>
+        <div class="password-wrap">
+          <input
+            type="password"
+            id="adminPassword"
+            placeholder="••••••••"
+            autocomplete="current-password"
+            required
+          />
+          <button type="button" class="toggle-pw" id="togglePw" aria-label="Afficher le mot de passe">
+            👁️
+          </button>
+        </div>
+      </div>
+
+      <button type="submit" class="login-btn" id="loginBtn">
+        <span id="loginBtnText">Se connecter</span>
+        <span id="loginBtnLoader" style="display:none;">⏳ Connexion...</span>
+      </button>
+
+    </form>
+
+    <p class="login-back">
+      <a href="../index.html">← Retour au site</a>
+    </p>
+
+  </div>
+
+  <!-- Supabase SDK -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+  <script src="js/auth.js"></script>
+</body>
+</html>
