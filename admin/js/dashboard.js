@@ -445,3 +445,9 @@ function getStatutLabel(s) {
 function getOccasionLabel(o) {
   return { anniversary:'💑 Couple', birthday:'🎂 Anniversaire', business:'💼 Affaires', family:'👨‍👩‍👧 Famille', date:'💕 Romantique', other:'✨ Autre' }[o] || o;
 }
+
+/* ══════════════════════════════════════════════════════
+   EXPOSER POUR CALENDAR.JS
+══════════════════════════════════════════════════════ */
+window.DEMO_RESERVATIONS  = DEMO_DATA;
+window.getAllReservations  = fetchReservations;

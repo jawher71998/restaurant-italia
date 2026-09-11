@@ -30,6 +30,10 @@
         <span>Réservations</span>
         <span class="snav-badge" id="badgeEnAttente">0</span>
       </a>
+      <a href="#calendrier" class="snav" data-section="calendrier">
+        <span class="snav-icon">🗓️</span>
+        <span>Calendrier</span>
+      </a>
       <a href="#clients" class="snav" data-section="clients">
         <span class="snav-icon">👥</span>
         <span>Clients</span>
@@ -175,6 +179,33 @@
 
     </section>
 
+    <!-- ═══════ SECTION CALENDRIER ══ -->
+    <section class="dash-section" id="section-calendrier">
+
+      <!-- Navigation semaine -->
+      <div class="cal-nav">
+        <button class="cal-nav-btn" id="calPrev">← Semaine précédente</button>
+        <div class="cal-week-label" id="calWeekLabel">—</div>
+        <button class="cal-nav-btn" id="calNext">Semaine suivante →</button>
+        <button class="cal-today-btn" id="calToday">Aujourd'hui</button>
+      </div>
+
+      <!-- Légende -->
+      <div class="cal-legend">
+        <span class="leg-item"><span class="leg-dot en_attente"></span> En attente</span>
+        <span class="leg-item"><span class="leg-dot confirmee"></span> Confirmée</span>
+        <span class="leg-item"><span class="leg-dot annulee"></span> Annulée</span>
+      </div>
+
+      <!-- Grille calendrier -->
+      <div class="cal-wrap">
+        <div class="cal-grid" id="calGrid">
+          <div class="loading-state">⏳ Chargement du calendrier...</div>
+        </div>
+      </div>
+
+    </section>
+
     <!-- ═══════ SECTION CLIENTS ══ -->
     <section class="dash-section" id="section-clients">
       <div class="dash-block">
@@ -232,5 +263,6 @@
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
   <script src="js/auth.js"></script>
   <script src="js/dashboard.js"></script>
+  <script src="js/calendar.js"></script>
 </body>
 </html>
