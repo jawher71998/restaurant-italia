@@ -106,15 +106,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Auto-rotate dots
   let current = 0;
-  setInterval(() => {
-    current = (current + 1) % dots.length;
-    dots.forEach(d => d.classList.remove('active'));
-    dots[current].classList.add('active');
+  if (dots.length > 0) {
+    setInterval(() => {
+      current = (current + 1) % dots.length;
+      dots.forEach(d => d.classList.remove('active'));
+      if (dots[current]) dots[current].classList.add('active');
 
-    if (window.innerWidth < 768 && cards[current]) {
-      cards[current].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
-    }
-  }, 5000);
+      if (window.innerWidth < 768 && cards[current]) {
+        cards[current].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+      }
+    }, 5000);
+  }
 
   /* ── 6. SMOOTH ANCHOR SCROLL ──────────────────────── */
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
