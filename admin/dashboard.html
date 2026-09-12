@@ -234,18 +234,76 @@
 
     <!-- ═══════ SECTION MENU ══ -->
     <section class="dash-section" id="section-menu">
-      <div class="dash-block">
-        <div class="block-header">
-          <h3>🍽️ Éditeur de Menu</h3>
-          <span class="coming-soon">🚧 Étape O — Bientôt disponible</span>
+
+      <!-- Toolbar -->
+      <div class="menu-toolbar">
+        <div class="menu-cats" id="menuCats">
+          <button class="menu-cat-btn active" data-cat="all">Toutes</button>
+          <button class="menu-cat-btn" data-cat="entrees">🥗 Entrées</button>
+          <button class="menu-cat-btn" data-cat="pates">🍝 Pâtes</button>
+          <button class="menu-cat-btn" data-cat="pizzas">🍕 Pizzas</button>
+          <button class="menu-cat-btn" data-cat="viandes">🥩 Viandes</button>
+          <button class="menu-cat-btn" data-cat="desserts">🍮 Desserts</button>
+          <button class="menu-cat-btn" data-cat="boissons">🍷 Boissons</button>
         </div>
-        <div class="empty-state">
-          <span>🍝</span>
-          <p>L'éditeur de menu arrive à l'étape O.</p>
-          <p>Tu pourras modifier les plats et les prix sans toucher au code.</p>
-        </div>
+        <button class="menu-add-btn" id="menuAddBtn">+ Nouveau plat</button>
       </div>
+
+      <!-- Grille plats -->
+      <div class="menu-grid" id="menuGrid">
+        <div class="loading-state">⏳ Chargement du menu...</div>
+      </div>
+
     </section>
+
+    <!-- ══ MODAL PLAT ══ -->
+    <div class="modal-overlay" id="menuModalOverlay">
+      <div class="modal-card" id="menuModalCard">
+        <button class="modal-close" id="menuModalClose">✕</button>
+        <h3 class="modal-title" id="menuModalTitle">Nouveau plat</h3>
+        <form id="menuForm" class="menu-form">
+          <input type="hidden" id="menuItemId" />
+          <div class="menu-form-grid">
+            <div class="field-group">
+              <label>Nom du plat *</label>
+              <input type="text" id="menuItemNom" placeholder="ex: Tagliatelle al Tartufo" required />
+            </div>
+            <div class="field-group">
+              <label>Prix (€) *</label>
+              <input type="number" id="menuItemPrix" placeholder="24" min="0" step="0.5" required />
+            </div>
+            <div class="field-group full">
+              <label>Description</label>
+              <textarea id="menuItemDesc" rows="2" placeholder="Description du plat..."></textarea>
+            </div>
+            <div class="field-group">
+              <label>Catégorie *</label>
+              <select id="menuItemCat">
+                <option value="entrees">🥗 Entrées</option>
+                <option value="pates">🍝 Pâtes</option>
+                <option value="pizzas">🍕 Pizzas</option>
+                <option value="viandes">🥩 Viandes</option>
+                <option value="desserts">🍮 Desserts</option>
+                <option value="boissons">🍷 Boissons</option>
+              </select>
+            </div>
+            <div class="field-group">
+              <label>Badges</label>
+              <div class="badge-checks">
+                <label><input type="checkbox" id="badgeVege" /> 🌿 Végétarien</label>
+                <label><input type="checkbox" id="badgeChef" /> 👨‍🍳 Spécialité</label>
+                <label><input type="checkbox" id="badgeNew"  /> ✨ Nouveau</label>
+                <label><input type="checkbox" id="badgeDispo" checked /> ✅ Disponible</label>
+              </div>
+            </div>
+          </div>
+          <div class="modal-actions">
+            <button type="submit" class="modal-btn confirm" id="menuSaveBtn">💾 Enregistrer</button>
+            <button type="button" class="modal-btn" id="menuDeleteBtn" style="display:none;background:#e74c3c;color:#fff;">🗑️ Supprimer</button>
+          </div>
+        </form>
+      </div>
+    </div>
 
   </main>
 
@@ -264,5 +322,6 @@
   <script src="js/auth.js"></script>
   <script src="js/dashboard.js"></script>
   <script src="js/calendar.js"></script>
+  <script src="js/menu-editor.js"></script>
 </body>
 </html>
