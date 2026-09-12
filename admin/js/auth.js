@@ -3,8 +3,8 @@
    Gestion login / logout Supabase Auth
 ═══════════════════════════════════════════════════════ */
 
-const SUPABASE_URL  = 'VOTRE_SUPABASE_URL';
-const SUPABASE_ANON = 'VOTRE_SUPABASE_ANON_KEY';
+const SUPABASE_URL  = 'https://bamysqszusyionrqlqwg.supabase.co';
+const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJhbXlzcXN6dXN5aW9ucnFscXdnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODkxNjIyMTQsImV4cCI6MjEwNDczODIxNH0.dbKY81vAkW-AWbJdFb9pnGwOXIyKPR5WAt6urqiHrTE';
 
 // ⚠️ FIX : ne créer le client QUE si les vraies clés sont là
 const IS_DEMO = (SUPABASE_URL === 'VOTRE_SUPABASE_URL');

@@ -1,29 +1,56 @@
 /* ═══════════════════════════════════════════════════════
    LA TAVOLA DI ROMA — reservation.js
-   Formulaire multi-étapes + EmailJS
+   Formulaire multi-étapes + Supabase + EmailJS
 ═══════════════════════════════════════════════════════ */
 
-const EMAILJS_CONFIG = {
-  publicKey:  'zeEsonQZi89VlJ8cN',
-  serviceId:  'service_nkpaz6c',
-  templateId: 'rye4uxf',
+/* ─────────────────────────────────────────────────────
+   ⚙️  CONFIGURATION — À personnaliser
+   (voir SUPABASE_SETUP.md pour les étapes détaillées)
+───────────────────────────────────────────────────────*/
+const SUPABASE_CONFIG = {
+  url:    'https://bamysqszusyionrqlqwg.supabase.co',    // ex: https://xyzxyz.supabase.co
+  anonKey:'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJhbXlzcXN6dXN5aW9ucnFscXdnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODkxNjIyMTQsImV4cCI6MjEwNDczODIxNH0.dbKY81vAkW-AWbJdFb9pnGwOXIyKPR5WAt6urqiHrTE', // clé publique (safe côté client)
 };
+
+const EMAILJS_CONFIG = {
+  publicKey:  'VOTRE_PUBLIC_KEY',
+  serviceId:  'VOTRE_SERVICE_ID',
+  templateId: 'VOTRE_TEMPLATE_ID',
+};
+
+/* ── Init Supabase client ──────────────────────────── */
+let supabaseClient = null;
+
+function initSupabase() {
+  if (typeof supabase === 'undefined') {
+    console.warn('⚠️  Supabase SDK non chargé');
+    return false;
+  }
+  if (SUPABASE_CONFIG.url === 'VOTRE_SUPABASE_URL') {
+    console.warn('⚠️  Supabase : configurez vos clés dans SUPABASE_CONFIG');
+    return false;
+  }
+  supabaseClient = supabase.createClient(SUPABASE_CONFIG.url, SUPABASE_CONFIG.anonKey);
+  console.log('✅ Supabase initialisé');
+  return true;
+}
 
 document.addEventListener('DOMContentLoaded', () => {
 
-  /* ── INIT EMAILJS ────────────────────────────────── */
+  /* ── INIT ────────────────────────────────────────── */
+  initSupabase();
+
   if (typeof emailjs !== 'undefined' && EMAILJS_CONFIG.publicKey !== 'VOTRE_PUBLIC_KEY') {
     emailjs.init({ publicKey: EMAILJS_CONFIG.publicKey });
     console.log('✅ EmailJS initialisé');
-  } else {
-    console.warn('⚠️  EmailJS : configurez vos clés dans EMAILJS_CONFIG (reservation.js ligne 5)');
   }
 
   /* ── ÉTAT GLOBAL ─────────────────────────────────── */
   const state = {
     step: 1, date: '', service: 'midi', time: '',
     guests: 2, occasion: '', prenom: '', nom: '',
-    email: '', tel: '', allergies: '', message: ''
+    email: '', tel: '', allergies: '', message: '',
+    ref: ''
   };
 
   const steps      = document.querySelectorAll('.form-step');
@@ -53,40 +80,57 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('prev2').addEventListener('click', () => goToStep(1));
 
   /* ══════════════════════════════════════════════════
-     2. BOUTON CONFIRMER + ENVOI EMAIL
+     2. BOUTON CONFIRMER — Supabase + EmailJS
   ══════════════════════════════════════════════════ */
   document.getElementById('next2').addEventListener('click', async () => {
     if (!validateStep2()) return;
     state.allergies = document.getElementById('resa-allergies').value.trim();
     state.message   = document.getElementById('resa-message').value.trim();
 
+    // Générer le numéro de référence unique
+    state.ref = 'LTR-' + Date.now().toString().slice(-6);
+
     setLoadingState(true);
+    hideSendError();
 
     try {
-      await sendReservationEmail();
+      // 1. Sauvegarder dans Supabase (priorité)
+      await saveToSupabase();
+
+      // 2. Envoyer l'email (secondaire — échec silencieux)
+      try {
+        await sendReservationEmail();
+      } catch (emailErr) {
+        console.warn('EmailJS non critique :', emailErr);
+      }
+
+      // 3. Succès → confirmation
       buildConfirmation();
       goToStep(3);
       launchConfetti();
+
     } catch (err) {
-      console.error('EmailJS error:', err);
-      const errDiv = document.getElementById('sendError');
-      if (errDiv) errDiv.style.display = 'flex';
-      // On laisse quand même passer à l'étape 3 après 2s
-      setTimeout(() => {
-        buildConfirmation();
-        goToStep(3);
-        launchConfetti();
-      }, 2000);
+      console.error('Erreur sauvegarde :', err);
+      showSendError();
+      // En mode démo (pas configuré) → on laisse passer quand même
+      if (!supabaseClient) {
+        setTimeout(() => {
+          hideSendError();
+          buildConfirmation();
+          goToStep(3);
+          launchConfetti();
+        }, 1500);
+      }
     } finally {
       setLoadingState(false);
     }
   });
 
   function setLoadingState(isLoading) {
-    const btn        = document.getElementById('next2');
-    const btnText    = document.getElementById('btnText');
-    const btnLoader  = document.getElementById('btnLoader');
-    const prevBtn    = document.getElementById('prev2');
+    const btn       = document.getElementById('next2');
+    const btnText   = document.getElementById('btnText');
+    const btnLoader = document.getElementById('btnLoader');
+    const prevBtn   = document.getElementById('prev2');
     btn.disabled     = isLoading;
     prevBtn.disabled = isLoading;
     if (btnText)   btnText.style.display  = isLoading ? 'none'  : 'inline';
@@ -94,8 +138,73 @@ document.addEventListener('DOMContentLoaded', () => {
     btn.style.opacity = isLoading ? '0.8' : '1';
   }
 
+  function showSendError() {
+    const el = document.getElementById('sendError');
+    if (el) el.style.display = 'flex';
+  }
+
+  function hideSendError() {
+    const el = document.getElementById('sendError');
+    if (el) el.style.display = 'none';
+  }
+
   /* ══════════════════════════════════════════════════
-     3. ENVOI EMAIL VIA EMAILJS
+     3. SAUVEGARDE SUPABASE
+  ══════════════════════════════════════════════════ */
+  async function saveToSupabase() {
+    // Mode démo — Supabase pas encore configuré
+    if (!supabaseClient) {
+      console.log('📦 [MODE DÉMO] Données qui seraient sauvegardées :', {
+        ref:       state.ref,
+        date:      state.date,
+        heure:     state.time,
+        service:   state.service,
+        couverts:  state.guests,
+        occasion:  state.occasion,
+        prenom:    state.prenom,
+        nom:       state.nom,
+        email:     state.email,
+        tel:       state.tel,
+        allergies: state.allergies,
+        message:   state.message,
+        statut:    'en_attente',
+      });
+      await new Promise(r => setTimeout(r, 800)); // simuler délai réseau
+      return;
+    }
+
+    // Vrai insert Supabase
+    const { data, error } = await supabaseClient
+      .from('reservations')
+      .insert({
+        ref:       state.ref,
+        date:      state.date,
+        heure:     state.time,
+        service:   state.service,
+        couverts:  state.guests,
+        occasion:  state.occasion  || '',
+        prenom:    state.prenom,
+        nom:       state.nom,
+        email:     state.email,
+        tel:       state.tel,
+        allergies: state.allergies || '',
+        message:   state.message   || '',
+        statut:    'en_attente',
+      })
+      .select()
+      .single();
+
+    if (error) {
+      console.error('Supabase insert error:', error);
+      throw new Error(error.message);
+    }
+
+    console.log('✅ Réservation sauvegardée :', data);
+    return data;
+  }
+
+  /* ══════════════════════════════════════════════════
+     4. ENVOI EMAIL VIA EMAILJS
   ══════════════════════════════════════════════════ */
   async function sendReservationEmail() {
     const occasionLabels = {
@@ -107,34 +216,30 @@ document.addEventListener('DOMContentLoaded', () => {
       weekday: 'long', day: 'numeric', month: 'long', year: 'numeric'
     });
 
-    const params = {
+    if (EMAILJS_CONFIG.publicKey === 'VOTRE_PUBLIC_KEY') {
+      console.log('📧 [MODE DÉMO] Email simulé');
+      return;
+    }
+
+    return await emailjs.send(EMAILJS_CONFIG.serviceId, EMAILJS_CONFIG.templateId, {
       client_prenom:    state.prenom,
       client_nom:       state.nom,
       client_email:     state.email,
       client_tel:       state.tel,
       client_allergies: state.allergies || 'Aucune',
       client_message:   state.message   || 'Aucun message',
+      resa_ref:         state.ref,
       resa_date:        dateFormatted,
-      resa_service:     state.service === 'midi' ? '☀️ Service du Midi (12h–14h30)' : '🌙 Service du Soir (19h–22h30)',
+      resa_service:     state.service === 'midi' ? '☀️ Midi' : '🌙 Soir',
       resa_heure:       state.time,
       resa_couverts:    state.guests + ' personne' + (state.guests > 1 ? 's' : ''),
       resa_occasion:    occasionLabels[state.occasion] || 'Aucune',
-      resa_numero:      'LTR-' + Date.now().toString().slice(-6),
       resa_timestamp:   new Date().toLocaleString('fr-FR'),
-    };
-
-    // MODE DÉMO — pas encore configuré
-    if (EMAILJS_CONFIG.publicKey === 'VOTRE_PUBLIC_KEY') {
-      console.log('📧 [MODE DÉMO] Réservation simulée :', params);
-      await new Promise(r => setTimeout(r, 1200));
-      return;
-    }
-
-    return await emailjs.send(EMAILJS_CONFIG.serviceId, EMAILJS_CONFIG.templateId, params);
+    });
   }
 
   /* ══════════════════════════════════════════════════
-     4. COMPTEUR COUVERTS
+     5. COMPTEUR COUVERTS
   ══════════════════════════════════════════════════ */
   const guestCountEl = document.getElementById('guestCount');
   const guestMinus   = document.getElementById('guestMinus');
@@ -158,7 +263,7 @@ document.addEventListener('DOMContentLoaded', () => {
   guestPlus.addEventListener ('click', () => { if (state.guests < 12) { state.guests++; updateGuestUI(); } });
 
   /* ══════════════════════════════════════════════════
-     5. SERVICE MIDI / SOIR
+     6. SERVICE MIDI / SOIR
   ══════════════════════════════════════════════════ */
   document.querySelectorAll('.service-btn').forEach(btn => {
     btn.addEventListener('click', () => {
@@ -171,7 +276,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   /* ══════════════════════════════════════════════════
-     6. CRÉNEAUX HORAIRES
+     7. CRÉNEAUX HORAIRES
   ══════════════════════════════════════════════════ */
   const SLOTS = {
     midi: ['12:00','12:30','13:00','13:30','14:00','14:30'],
@@ -205,7 +310,7 @@ document.addEventListener('DOMContentLoaded', () => {
   generateTimeSlots();
 
   /* ══════════════════════════════════════════════════
-     7. DATE MINIMUM = aujourd'hui
+     8. DATE MINIMUM
   ══════════════════════════════════════════════════ */
   const dateInput = document.getElementById('resa-date');
   dateInput.min = new Date().toISOString().split('T')[0];
@@ -216,7 +321,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   /* ══════════════════════════════════════════════════
-     8. OCCASIONS SPÉCIALES
+     9. OCCASIONS SPÉCIALES
   ══════════════════════════════════════════════════ */
   document.querySelectorAll('.occasion-btn').forEach(btn => {
     btn.addEventListener('click', () => {
@@ -227,7 +332,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   /* ══════════════════════════════════════════════════
-     9. VALIDATION
+     10. VALIDATION
   ══════════════════════════════════════════════════ */
   function showError(id, msg) {
     const el = document.getElementById(id);
@@ -290,7 +395,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   /* ══════════════════════════════════════════════════
-     10. RÉCAPITULATIF
+     11. RÉCAPITULATIF
   ══════════════════════════════════════════════════ */
   function buildRecap() {
     const df = state.date
@@ -310,15 +415,14 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ══════════════════════════════════════════════════
-     11. PAGE DE CONFIRMATION
+     12. PAGE DE CONFIRMATION
   ══════════════════════════════════════════════════ */
   function buildConfirmation() {
     const df = new Date(state.date + 'T00:00:00').toLocaleDateString('fr-FR', {
       weekday:'long', day:'numeric', month:'long', year:'numeric'
     });
-    const ref = 'LTR-' + Date.now().toString().slice(-6);
     const items = [
-      { label:'Référence', value: ref, highlight: true },
+      { label:'Référence', value: state.ref, highlight: true },
       { label:'Nom',       value: state.prenom + ' ' + state.nom },
       { label:'Date',      value: df },
       { label:'Heure',     value: state.time + ' · ' + (state.service === 'midi' ? 'Midi' : 'Soir') },
@@ -334,7 +438,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ══════════════════════════════════════════════════
-     12. CONFETTI 🎉
+     13. CONFETTI 🎉
   ══════════════════════════════════════════════════ */
   function launchConfetti() {
     const area = document.getElementById('confettiArea');
@@ -356,5 +460,5 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => { area.innerHTML = ''; }, 3000);
   }
 
-  console.log('🍕 Reservation + EmailJS — prêt!');
+  console.log('🍕 Reservation + Supabase + EmailJS — prêt!');
 });
