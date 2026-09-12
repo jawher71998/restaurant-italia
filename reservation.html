@@ -71,6 +71,7 @@
     <ul class="nav-links" id="navLinks">
       <li><a href="index.html" class="nav-link">Accueil</a></li>
       <li><a href="menu.html" class="nav-link">Menu</a></li>
+      <li><a href="galerie.html" class="nav-link">Galerie</a></li>
       <li><a href="index.html#about" class="nav-link">À propos</a></li>
       <li><a href="index.html#specialties" class="nav-link">Spécialités</a></li>
       <li><a href="reservation.html" class="nav-link nav-cta active-cta">Réserver</a></li>
@@ -369,10 +370,29 @@
 
   </main>
 
+  <!-- ══ MINI FOOTER ══ -->
+  <footer style="background:var(--deep);padding:1.2rem 4%;border-top:1px solid rgba(255,255,255,0.06);">
+    <div class="footer-bottom" style="max-width:100%;color:rgba(255,255,255,0.3);">
+      <span>© 2026 La Tavola di Roma · <a href="rgpd.html" style="color:rgba(255,255,255,0.4);">Confidentialité & Mentions légales</a></span>
+      <span>12 Rue de la Paix, 75001 Paris</span>
+    </div>
+  </footer>
+
+  <!-- ═══ SUPABASE SDK ═══ -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+
   <!-- ═══ EMAILJS SDK ═══ -->
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
   <script src="js/main.js"></script>
-  <script src="js/reservation.js"></script>
+  <script>
+    // Charger reservation.js après que tous les SDKs soient prêts
+    window.addEventListener('load', function() {
+      var s = document.createElement('script');
+      s.src = 'js/reservation.js';
+      document.body.appendChild(s);
+    });
+  </script>
+  <script src="js/advanced-animations.js" defer></script>
 </body>
 </html>
