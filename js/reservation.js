@@ -207,35 +207,35 @@ function initSupabase() {
      4. ENVOI EMAIL VIA EMAILJS
   ══════════════════════════════════════════════════ */
   async function sendReservationEmail() {
-    const occasionLabels = {
-      anniversary: 'Anniversaire de couple', birthday: 'Anniversaire',
-      business: "Repas d'affaires", family: 'Repas en famille',
-      date: 'Dîner romantique', other: 'Autre', '': 'Aucune'
-    };
-    const dateFormatted = new Date(state.date + 'T00:00:00').toLocaleDateString('fr-FR', {
-      weekday: 'long', day: 'numeric', month: 'long', year: 'numeric'
-    });
-
-    if (EMAILJS_CONFIG.publicKey === 'VOTRE_PUBLIC_KEY') {
-      console.log('📧 [MODE DÉMO] Email simulé');
-      return;
+    // Netlify Function → Resend → 2 emails (client + restaurant)
+    try {
+      const res = await fetch('/.netlify/functions/send-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          prenom:    state.prenom,
+          nom:       state.nom,
+          email:     state.email,
+          tel:       state.tel,
+          date:      state.date,
+          heure:     state.time,
+          service:   state.service,
+          couverts:  state.guests,
+          occasion:  state.occasion  || '',
+          allergies: state.allergies || '',
+          message:   state.message   || '',
+          ref:       state.ref,
+        }),
+      });
+      const data = await res.json();
+      if (data.success) {
+        console.log('✅ Emails envoyés via Resend !');
+      } else {
+        console.warn('⚠️ Resend:', data.error);
+      }
+    } catch(e) {
+      console.warn('⚠️ Email non envoyé (normal en local):', e.message);
     }
-
-    return await emailjs.send(EMAILJS_CONFIG.serviceId, EMAILJS_CONFIG.templateId, {
-      client_prenom:    state.prenom,
-      client_nom:       state.nom,
-      client_email:     state.email,
-      client_tel:       state.tel,
-      client_allergies: state.allergies || 'Aucune',
-      client_message:   state.message   || 'Aucun message',
-      resa_ref:         state.ref,
-      resa_date:        dateFormatted,
-      resa_service:     state.service === 'midi' ? '☀️ Midi' : '🌙 Soir',
-      resa_heure:       state.time,
-      resa_couverts:    state.guests + ' personne' + (state.guests > 1 ? 's' : ''),
-      resa_occasion:    occasionLabels[state.occasion] || 'Aucune',
-      resa_timestamp:   new Date().toLocaleString('fr-FR'),
-    });
   }
 
   /* ══════════════════════════════════════════════════
