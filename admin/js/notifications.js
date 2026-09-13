@@ -258,37 +258,7 @@
      DONNÉES DÉMO
   ══════════════════════════════════════════════════ */
   function addDemoNotifications() {
-    const demos = [
-      {
-        type: 'reservation',
-        title: '🍽️ Nouvelle réservation !',
-        body: 'Sophie Martin — 4 pers. — Samedi à 20:00',
-        resaId: 1,
-      },
-      {
-        type: 'reservation',
-        title: '🍽️ Nouvelle réservation !',
-        body: 'Marc Dupont — 2 pers. — Vendredi à 12:30',
-        resaId: 2,
-      },
-    ];
-
-    // Ajouter silencieusement (sans son ni toast)
-    demos.forEach((d, i) => {
-      const notif = {
-        id:     Date.now() + i,
-        type:   d.type,
-        title:  d.title,
-        body:   d.body,
-        time:   new Date(Date.now() - (i + 1) * 3600000), // 1h, 2h ago
-        read:   false,
-        resaId: d.resaId,
-      };
-      notifications.push(notif);
-      unreadCount++;
-    });
-
-    updateBadge();
+    // Désactivé — les vraies notifs viennent de Supabase Realtime
     renderList();
   }
 
