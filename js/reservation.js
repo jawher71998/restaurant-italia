@@ -35,7 +35,7 @@ function initSupabase() {
   return true;
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+(function init() {
 
   /* ── INIT ────────────────────────────────────────── */
   initSupabase();
@@ -461,4 +461,4 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   console.log('🍕 Reservation + Supabase + EmailJS — prêt!');
-});
+})();
