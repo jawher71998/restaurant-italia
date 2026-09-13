@@ -210,22 +210,26 @@
     <section class="dash-section" id="section-clients">
       <div class="dash-block">
         <div class="block-header">
-          <h3>👥 Liste des clients</h3>
-          <span id="clientCount" class="count-badge">0 clients</span>
+          <h3>👥 Clients</h3>
+          <div style="display:flex;gap:0.75rem;align-items:center;">
+            <input type="text" id="searchClients" placeholder="🔍 Rechercher..." style="padding:0.4rem 0.8rem;border:1.5px solid var(--cream-dark);border-radius:50px;font-family:var(--font-body);font-size:0.82rem;outline:none;background:var(--cream);width:180px;" />
+            <span id="clientCount" class="count-badge">0 clients</span>
+          </div>
         </div>
         <div class="table-wrap">
           <table class="res-table">
             <thead>
               <tr>
-                <th>Nom</th>
+                <th>Client</th>
                 <th>Email</th>
                 <th>Téléphone</th>
                 <th>Réservations</th>
+                <th>Couverts</th>
                 <th>Dernière visite</th>
               </tr>
             </thead>
             <tbody id="clientsTableBody">
-              <tr><td colspan="5" class="loading-state">⏳ Chargement...</td></tr>
+              <tr><td colspan="6" class="loading-state">⏳ Chargement...</td></tr>
             </tbody>
           </table>
         </div>

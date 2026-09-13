@@ -353,50 +353,171 @@ function closeModal() {
 }
 
 /* ══════════════════════════════════════════════════════
-   7. CLIENTS
+   7. CLIENTS AVANCÉS
 ══════════════════════════════════════════════════════ */
+let allClients = [];
+let clientSearch = '';
+
 async function loadClients() {
   const all = await fetchReservations();
 
-  // Grouper par email
+  // Grouper par email avec stats complètes
   const clientMap = {};
   all.forEach(r => {
     if (!clientMap[r.email]) {
       clientMap[r.email] = {
         prenom: r.prenom, nom: r.nom,
         email: r.email, tel: r.tel,
-        reservations: [], lastDate: r.date
+        reservations: [],
+        lastDate: r.date,
+        totalCouverts: 0,
       };
     }
     clientMap[r.email].reservations.push(r);
-    if (r.date > clientMap[r.email].lastDate) clientMap[r.email].lastDate = r.date;
+    if (r.statut !== 'annulee') {
+      clientMap[r.email].totalCouverts += r.couverts;
+    }
+    if (r.date > clientMap[r.email].lastDate) {
+      clientMap[r.email].lastDate = r.date;
+    }
   });
 
-  const clients = Object.values(clientMap);
-  setText('clientCount', clients.length + ' client' + (clients.length > 1 ? 's' : ''));
+  allClients = Object.values(clientMap).sort((a, b) =>
+    b.reservations.length - a.reservations.length
+  );
 
+  setText('clientCount', allClients.length + ' client' + (allClients.length > 1 ? 's' : ''));
+
+  // Ajouter la recherche clients
+  const searchEl = document.getElementById('searchClients');
+  if (searchEl) {
+    searchEl.addEventListener('input', e => {
+      clientSearch = e.target.value.trim().toLowerCase();
+      renderClients();
+    });
+  }
+
+  renderClients();
+}
+
+function renderClients() {
   const tbody = document.getElementById('clientsTableBody');
   if (!tbody) return;
 
-  if (!clients.length) {
-    tbody.innerHTML = '<tr><td colspan="5" class="loading-state">Aucun client.</td></tr>';
+  let filtered = allClients;
+  if (clientSearch) {
+    filtered = allClients.filter(c =>
+      c.prenom.toLowerCase().includes(clientSearch) ||
+      c.nom.toLowerCase().includes(clientSearch) ||
+      c.email.toLowerCase().includes(clientSearch) ||
+      c.tel.includes(clientSearch)
+    );
+  }
+
+  if (!filtered.length) {
+    tbody.innerHTML = '<tr><td colspan="6" class="loading-state">Aucun client trouvé.</td></tr>';
     return;
   }
 
-  tbody.innerHTML = clients.map(c => `
-    <tr>
-      <td><strong>${c.prenom} ${c.nom}</strong></td>
-      <td><a href="mailto:${c.email}" style="color:var(--terra);">${c.email}</a></td>
-      <td><a href="tel:${c.tel}">${c.tel}</a></td>
-      <td>
-        <span style="background:rgba(196,98,45,0.1);color:var(--terra);padding:0.2rem 0.6rem;border-radius:50px;font-size:0.78rem;">
-          ${c.reservations.length} résa
-        </span>
-      </td>
-      <td>${formatDate(c.lastDate)}</td>
-    </tr>
-  `).join('');
+  tbody.innerHTML = filtered.map(c => {
+    const isVip      = c.reservations.length >= 3;
+    const confirmed  = c.reservations.filter(r => r.statut === 'confirmee').length;
+    const cancelled  = c.reservations.filter(r => r.statut === 'annulee').length;
+
+    return `
+      <tr class="client-row" style="cursor:pointer;" onclick="openClientModal('${c.email}')">
+        <td>
+          <div style="display:flex;align-items:center;gap:0.5rem;">
+            <div class="client-avatar">${c.prenom.charAt(0)}${c.nom.charAt(0)}</div>
+            <div>
+              <strong>${c.prenom} ${c.nom}</strong>
+              ${isVip ? '<span class="vip-badge">⭐ VIP</span>' : ''}
+            </div>
+          </div>
+        </td>
+        <td><a href="mailto:${c.email}" style="color:var(--terra);" onclick="event.stopPropagation()">${c.email}</a></td>
+        <td><a href="tel:${c.tel}" onclick="event.stopPropagation()">${c.tel}</a></td>
+        <td>
+          <span class="count-pill">${c.reservations.length} résa</span>
+          ${confirmed > 0 ? `<span class="count-pill success">${confirmed} ✅</span>` : ''}
+          ${cancelled > 0 ? `<span class="count-pill danger">${cancelled} ❌</span>` : ''}
+        </td>
+        <td>👥 ${c.totalCouverts} couverts</td>
+        <td>${formatDate(c.lastDate)}</td>
+      </tr>
+    `;
+  }).join('');
 }
+
+// Modal historique client
+window.openClientModal = function(email) {
+  const c = allClients.find(c => c.email === email);
+  if (!c) return;
+
+  const isVip = c.reservations.length >= 3;
+  const body  = document.getElementById('modalBody');
+  const actions = document.getElementById('modalActions');
+
+  body.innerHTML = `
+    <div style="display:flex;align-items:center;gap:1rem;margin-bottom:1.25rem;padding-bottom:1rem;border-bottom:1px solid var(--cream-dark);">
+      <div class="client-avatar large">${c.prenom.charAt(0)}${c.nom.charAt(0)}</div>
+      <div>
+        <h4 style="font-size:1.1rem;margin-bottom:0.2rem;">
+          ${c.prenom} ${c.nom}
+          ${isVip ? '<span class="vip-badge">⭐ VIP</span>' : ''}
+        </h4>
+        <div style="font-size:0.82rem;color:var(--text-light);">
+          <a href="mailto:${c.email}" style="color:var(--terra);">${c.email}</a> · 
+          <a href="tel:${c.tel}">${c.tel}</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="client-stats-row">
+      <div class="client-stat">
+        <span>${c.reservations.length}</span>
+        <small>Réservations</small>
+      </div>
+      <div class="client-stat">
+        <span>${c.totalCouverts}</span>
+        <small>Couverts total</small>
+      </div>
+      <div class="client-stat">
+        <span>${c.reservations.filter(r => r.statut === 'confirmee').length}</span>
+        <small>Confirmées</small>
+      </div>
+      <div class="client-stat">
+        <span>${c.reservations.filter(r => r.statut === 'annulee').length}</span>
+        <small>Annulées</small>
+      </div>
+    </div>
+
+    <h5 style="font-size:0.8rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-light);margin:1rem 0 0.5rem;">
+      Historique des réservations
+    </h5>
+    <div class="client-history">
+      ${c.reservations.sort((a,b) => b.date.localeCompare(a.date)).map(r => `
+        <div class="history-row ${r.statut}" onclick="openModal(${r.id})">
+          <span class="history-date">${formatDate(r.date)}</span>
+          <span>${r.heure} · ${r.service === 'midi' ? '☀️' : '🌙'} · 👥${r.couverts}</span>
+          <span class="statut-badge ${r.statut}" style="font-size:0.7rem;">${getStatutLabel(r.statut)}</span>
+        </div>
+      `).join('')}
+    </div>
+  `;
+
+  actions.innerHTML = `
+    <a href="mailto:${c.email}" class="modal-btn confirm" style="text-align:center;text-decoration:none;">
+      ✉️ Envoyer un email
+    </a>
+    <a href="tel:${c.tel}" class="modal-btn" style="background:var(--terra);color:#fff;text-align:center;text-decoration:none;">
+      📞 Appeler
+    </a>
+  `;
+
+  document.getElementById('modalOverlay').classList.add('open');
+};
+
 
 /* ══════════════════════════════════════════════════════
    8. TOAST NOTIFICATION

@@ -1530,3 +1530,127 @@ button { cursor: pointer; border: none; background: none; font-family: var(--fon
   .notif-panel { width: calc(100vw - 2rem); right: 1rem; }
   .notif-toast { max-width: calc(100vw - 2rem); right: 1rem; }
 }
+
+/* ══════════════════════════════════════════════════════
+   CLIENTS AVANCÉS — Étape P
+══════════════════════════════════════════════════════ */
+
+/* Avatar client */
+.client-avatar {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--terra), var(--gold));
+  color: var(--white);
+  font-size: 0.75rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  letter-spacing: 0.05em;
+}
+
+.client-avatar.large {
+  width: 52px; height: 52px;
+  font-size: 1rem;
+}
+
+/* Badge VIP */
+.vip-badge {
+  display: inline-block;
+  background: linear-gradient(135deg, #f6d365, #fda085);
+  color: #7a3800;
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 0.15rem 0.5rem;
+  border-radius: 50px;
+  margin-left: 0.4rem;
+  vertical-align: middle;
+}
+
+/* Pills compteurs */
+.count-pill {
+  display: inline-block;
+  padding: 0.2rem 0.55rem;
+  border-radius: 50px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  background: rgba(196,98,45,0.1);
+  color: var(--terra);
+  margin-right: 0.25rem;
+}
+
+.count-pill.success { background: rgba(39,174,96,0.1);  color: var(--success); }
+.count-pill.danger  { background: rgba(231,76,60,0.1);  color: var(--danger);  }
+
+/* Ligne client cliquable */
+.client-row:hover td { background: rgba(245,240,232,0.7); }
+
+/* Stats dans modal client */
+.client-stats-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+}
+
+.client-stat {
+  background: var(--cream);
+  border-radius: var(--radius);
+  padding: 0.75rem;
+  text-align: center;
+}
+
+.client-stat span {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 300;
+  color: var(--terra);
+  line-height: 1;
+}
+
+.client-stat small {
+  font-size: 0.68rem;
+  color: var(--text-light);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+/* Historique réservations dans modal */
+.client-history {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.history-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.55rem 0.75rem;
+  background: var(--cream);
+  border-radius: var(--radius);
+  border-left: 3px solid var(--cream-dark);
+  cursor: pointer;
+  font-size: 0.82rem;
+  transition: var(--transition);
+}
+
+.history-row:hover { background: var(--cream-dark); }
+.history-row.confirmee { border-color: var(--success); }
+.history-row.annulee   { border-color: var(--danger); opacity: 0.65; }
+.history-row.en_attente{ border-color: var(--warning); }
+
+.history-date {
+  font-weight: 600;
+  color: var(--text);
+  min-width: 90px;
+  font-size: 0.78rem;
+}
+
+@media (max-width: 600px) {
+  .client-stats-row { grid-template-columns: repeat(2, 1fr); }
+}
