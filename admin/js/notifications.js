@@ -31,10 +31,10 @@
      INIT — Injecter le panneau dans le DOM
   ══════════════════════════════════════════════════ */
   document.addEventListener('DOMContentLoaded', () => {
-    injectNotifPanel();
-    initNotifEvents();
-    addDemoNotifications();   // données démo au démarrage
-    startRealtimeListener();  // Supabase Realtime si configuré
+    injectNotifPanel();   // 1. Créer le panneau d'abord
+    initNotifEvents();    // 2. Puis attacher les events
+    renderList();         // 3. Afficher la liste vide
+    startRealtimeListener();  // 4. Écouter Supabase Realtime
   });
 
   /* ── Injecter HTML du panneau ─────────────────────── */
@@ -130,12 +130,20 @@
 
   /* ── Mettre à jour le badge ───────────────────────── */
   function updateBadge() {
-    const dot    = document.getElementById('notifDot');
-    const btn    = document.getElementById('notifBtn');
-
+    // Badge cloche header
+    const dot = document.getElementById('notifDot');
     if (dot) {
       dot.style.display = unreadCount > 0 ? 'block' : 'none';
-      dot.textContent   = unreadCount > 9 ? '9+' : (unreadCount || '');
+      dot.textContent   = unreadCount > 9 ? '9+' : (unreadCount > 0 ? String(unreadCount) : '');
+    }
+
+    // Badge sidebar Réservations
+    const sidebarBadge = document.getElementById('badgeEnAttente');
+    if (sidebarBadge) {
+      if (unreadCount > 0) {
+        sidebarBadge.textContent    = unreadCount;
+        sidebarBadge.style.display  = 'inline-block';
+      }
     }
   }
 
